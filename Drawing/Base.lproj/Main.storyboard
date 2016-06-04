@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGo-qI-iFv" customClass="Drawing">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vdS-QU-TRC">
+                                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                        <items>
+                                            <barButtonItem title="Item" style="plain" id="lLf-Pb-nCf">
+                                                <slider key="customView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="1" maxValue="20" id="9z2-cD-ajF">
+                                                    <rect key="frame" x="18" y="6.5" width="118" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="pathWidthChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="Wk7-cV-cSn"/>
+                                                    </connections>
+                                                </slider>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="TSY-FV-FXG"/>
+                                            <barButtonItem image="color_mode_wheel" style="plain" id="Chs-sy-Zdd">
+                                                <connections>
+                                                    <action selector="getARGB:" destination="BYZ-38-t0r" id="wJi-f6-7yr"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="fW8-7Q-8hW"/>
+                                            <barButtonItem systemItem="add" id="bTY-IX-Qad">
+                                                <connections>
+                                                    <action selector="showPopover:" destination="BYZ-38-t0r" id="Odd-jm-sXa"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="nDU-su-aWN"/>
+                                            <barButtonItem title="背景图" id="s9i-pA-wdQ"/>
+                                            <barButtonItem systemItem="cancel" id="ns5-D9-WuB"/>
+                                        </items>
+                                        <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </toolbar>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="vdS-QU-TRC" firstAttribute="leading" secondItem="DGo-qI-iFv" secondAttribute="leading" id="EKk-Cr-HwV"/>
+                                    <constraint firstAttribute="bottom" secondItem="vdS-QU-TRC" secondAttribute="bottom" id="MQR-R1-lmh"/>
+                                    <constraint firstAttribute="trailing" secondItem="vdS-QU-TRC" secondAttribute="trailing" id="vdi-Zg-aHB"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="DGo-qI-iFv" secondAttribute="trailing" id="DLg-4C-qoJ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="DGo-qI-iFv" secondAttribute="bottom" id="Jd4-Q2-GOb"/>
+                            <constraint firstItem="DGo-qI-iFv" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="TZt-cH-8Y4"/>
+                            <constraint firstItem="DGo-qI-iFv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="v5V-Th-mgV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="drawing" destination="DGo-qI-iFv" id="ysm-sP-Zkl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="181" y="286"/>
+        </scene>
+        <!--Data Picker View Controller-->
+        <scene sceneID="NaH-fO-t2E">
+            <objects>
+                <viewController storyboardIdentifier="Date" id="sbo-Hh-nzi" customClass="DataPickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Nt-76-D9V"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZqA-j7-set"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JVD-Qt-it5">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldB-3c-PT4">
+                                <rect key="frame" x="20" y="30" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="rWI-ia-jf5">
+                                <rect key="frame" x="20" y="58.5" width="560" height="541.5"/>
+                                <date key="date" timeIntervalSinceReferenceDate="486663670.86868399">
+                                    <!--2016-06-03 16:21:10 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ldB-3c-PT4" firstAttribute="leading" secondItem="JVD-Qt-it5" secondAttribute="leadingMargin" id="9ZQ-SH-5iR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rWI-ia-jf5" secondAttribute="trailing" id="Bt2-4j-Nks"/>
+                            <constraint firstItem="ldB-3c-PT4" firstAttribute="top" secondItem="JVD-Qt-it5" secondAttribute="topMargin" constant="30" id="Nin-QT-pz5"/>
+                            <constraint firstItem="ZqA-j7-set" firstAttribute="top" secondItem="rWI-ia-jf5" secondAttribute="bottom" id="Yu5-Vj-Tpl"/>
+                            <constraint firstItem="rWI-ia-jf5" firstAttribute="top" secondItem="ldB-3c-PT4" secondAttribute="bottom" constant="8" id="Zxw-HC-quV"/>
+                            <constraint firstItem="rWI-ia-jf5" firstAttribute="leading" secondItem="JVD-Qt-it5" secondAttribute="leadingMargin" id="pAP-7j-XW9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="datePicker" destination="rWI-ia-jf5" id="s2I-qn-FTl"/>
+                        <outlet property="label" destination="ldB-3c-PT4" id="aK3-5s-A8u"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rnk-NO-YC6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1091" y="382"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="color_mode_wheel" width="88" height="88"/>
+    </resources>
+</document>
