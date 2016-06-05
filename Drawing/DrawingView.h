@@ -7,14 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Path.h"
+#import "DrawingViewDelegate.h"
+#import "DrawingDataSource.h"
 
-@interface Drawing : UIView
+@interface DrawingView : UIView
 //@property CGFloat radius;
-@property NSMutableArray *pathArray;
-@property NSMutableArray *pathAbandonedArray;
+
 @property UIColor *pathColor;
 @property CGFloat pathWidth;
-
+@property (weak, nonatomic) id<DrawingViewDelegate> delegate;
+@property (weak, nonatomic) id<DrawingDataSource> dataSource;
 
 -(void) viewSet;
 @end

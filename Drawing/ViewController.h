@@ -7,11 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Drawing.h"
-@interface ViewController : UIViewController
+#import "DrawingView.h"
+#import "PathBL.h"
+#import "Path.h"
+#import "DrawingViewDelegate.h"
+#import "DrawingDataSource.h"
 
-@property (weak, nonatomic) IBOutlet Drawing *drawing;
-@property (nonatomic, strong) UIPopoverController *popController;
+@interface ViewController : UIViewController<DrawingViewDelegate,DrawingDataSource>
+
+@property (weak, nonatomic) IBOutlet DrawingView *drawing;
+@property (strong, nonatomic) NSMutableArray *pathsList;
+@property (strong, nonatomic) NSMutableArray *abandonedPathList;
+@property (strong, nonatomic) PathBL *pathbl;
 
 - (IBAction)pathWidthChange:(UISlider *)sender;
 

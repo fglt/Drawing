@@ -18,10 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGo-qI-iFv" customClass="Drawing">
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGo-qI-iFv" customClass="DrawingView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vdS-QU-TRC">
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vdS-QU-TRC" customClass="TranslucentToolbar">
                                         <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                         <items>
                                             <barButtonItem title="Item" style="plain" id="lLf-Pb-nCf">
@@ -34,7 +34,7 @@
                                                 </slider>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="TSY-FV-FXG"/>
-                                            <barButtonItem image="color_mode_wheel" style="plain" id="Chs-sy-Zdd">
+                                            <barButtonItem image="toolbar_color_mode_wheel" style="plain" id="Chs-sy-Zdd">
                                                 <connections>
                                                     <action selector="getARGB:" destination="BYZ-38-t0r" id="wJi-f6-7yr"/>
                                                 </connections>
@@ -47,7 +47,11 @@
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="nDU-su-aWN"/>
                                             <barButtonItem title="背景图" id="s9i-pA-wdQ"/>
-                                            <barButtonItem systemItem="cancel" id="ns5-D9-WuB"/>
+                                            <barButtonItem systemItem="save" id="ns5-D9-WuB">
+                                                <connections>
+                                                    <action selector="onClickSave:" destination="BYZ-38-t0r" id="8Hb-NS-XBO"/>
+                                                </connections>
+                                            </barButtonItem>
                                         </items>
                                         <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </toolbar>
@@ -121,6 +125,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="color_mode_wheel" width="88" height="88"/>
+        <image name="toolbar_color_mode_wheel" width="64" height="64"/>
     </resources>
 </document>

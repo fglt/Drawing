@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "PathBL.h"
 
 @interface ViewController () <UIPopoverPresentationControllerDelegate>
 
@@ -19,9 +20,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     //[self.drawing viewSet];
+    self.pathbl = [ [PathBL alloc] init];
+    self.drawing.delegate = self;
+    self.drawing.dataSource = self;
+    self.pathsList = [self.pathbl findAll];
+    self.abandonedPathList = [NSMutableArray array];
     
-    UIMenuController *popMenu = [UIMenuController sharedMenuController];
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,6 +41,9 @@
 
 }
 
+- (IBAction)onClickSave:(UIBarButtonItem *)sender {
+     //[self.pathbl save:self.pathsList];
+}
 
 - (IBAction)showPopover:(UIBarButtonItem *)sender {
     // grab the view controller we want to show
@@ -75,5 +82,60 @@
     // called when the Popover changes positon
 }
 
+-(u_long) numberOfPath
+{
+ 
+    return self.pathsList.count;
+}
 
+-(Path *) pathAtIndex:(u_long)index
+{
+    return self.pathsList[index];
+}
+
+-(Path *) pathAtLast
+{
+     return [self.pathsList lastObject];
+}
+-(u_long) numberOfAbandonedPath
+{
+    return self.abandonedPathList.count;
+}
+
+-(Path *) AbandonedPathAtLast
+{
+    Path *path = [self.abandonedPathList lastObject];
+    [self.abandonedPathList removeLastObject];
+    
+    return path;
+}
+
+-(void) addPath:(Path*)path
+{
+    self.pathsList = [self.pathbl createPath:path];
+}
+
+-(void) removeLast
+{
+    self.pathsList = [self.pathbl remove];
+}
+
+-(void) addAbandonedPath
+{
+    if(self.pathsList.count>0){
+        Path *path = [self.pathsList lastObject];
+        self.pathsList = [self.pathbl remove];
+        [self.abandonedPathList addObject:path];
+    }
+}
+
+
+-(void) backAbandonedPath
+{
+    if(self.abandonedPathList.count>0){
+        Path *path = [self.abandonedPathList lastObject];
+        [self.abandonedPathList removeLastObject];
+        self.pathsList = [self.pathbl createPath:path];
+    }
+}
 @end
