@@ -7,7 +7,6 @@
 //
 
 #import "DrawingView.h"
-#import "PathBL.h"
 
 IB_DESIGNABLE
 @implementation DrawingView
@@ -77,7 +76,6 @@ IB_DESIGNABLE
     path.width = [NSNumber  numberWithFloat:pathWidth] ;
     path.points = pointsArray;
     
-
     [self.dataSource addPath:path];
 
 }
@@ -101,7 +99,6 @@ IB_DESIGNABLE
     CGFloat timeInterval = 0.3;
     
     if(touch.tapCount>0){
-        //[pathArray removeLastObject];
         [self.dataSource removeLast];
     }
     
@@ -119,12 +116,6 @@ IB_DESIGNABLE
 
 }
 
--(void)undo
-{
-    [self.dataSource addAbandonedPath];
-    [self setNeedsDisplay];
-}
-
 -(void)redo
 {
     [self.dataSource backAbandonedPath];
@@ -134,7 +125,8 @@ IB_DESIGNABLE
 
 -(void)tapTwice
 {
-    [self undo];
+    [self.dataSource addAbandonedPath];
+    [self setNeedsDisplay];
 }
 -(void)tapOnce
 {

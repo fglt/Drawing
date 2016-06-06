@@ -38,8 +38,13 @@
 {
     return [self.pathDao findAll];
 }
--(BOOL) save:(NSMutableArray *)pathList
+-(BOOL) saveToFile:(NSString *)fileName
 {
-    return [self.pathDao save:pathList];
+    return [self.pathDao saveToFile:fileName];
+}
+
+-(NSMutableArray*) findByName:(NSString *)name
+{
+    return [self.pathDao findByName:name];
 }
 @end

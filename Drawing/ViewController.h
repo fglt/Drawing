@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet DrawingView *drawing;
 @property (strong, nonatomic) NSMutableArray *pathsList;
 @property (strong, nonatomic) NSMutableArray *abandonedPathList;
-@property (strong, nonatomic) PathBL *pathbl;
+@property (strong, nonatomic) PathBL *pathBL;
 
 - (IBAction)pathWidthChange:(UISlider *)sender;
 

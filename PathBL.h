@@ -20,6 +20,8 @@
 
 //查询所用数据方法
 -(NSMutableArray*) findAll;
--(BOOL) save:(NSMutableArray *)pathList;
+-(BOOL) saveToFile:(NSString *)fileName;
+
+-(NSMutableArray*) findByName:(NSString *)name;
 
 @end

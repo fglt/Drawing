@@ -20,10 +20,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     //[self.drawing viewSet];
-    self.pathbl = [ [PathBL alloc] init];
+    self.pathBL = [ [PathBL alloc] init];
     self.drawing.delegate = self;
     self.drawing.dataSource = self;
-    self.pathsList = [self.pathbl findAll];
+    self.pathsList = [self.pathBL findAll];
     self.abandonedPathList = [NSMutableArray array];
     
 }
@@ -38,12 +38,33 @@
 }
 
 - (IBAction)getARGB:(UIBarButtonItem *)sender {
-
+//    self.pathsList = [self.pathBL findByName:@"001"];
+//    self.abandonedPathList  = [NSMutableArray array];
+//    [self  reDraw:self.drawing];
 }
 
 - (IBAction)onClickSave:(UIBarButtonItem *)sender {
-     //[self.pathbl save:self.pathsList];
-}
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:nil message:@"保存" preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * textField){
+        textField.placeholder =@"名称";
+    }];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        UITextField *name = alertController.textFields.firstObject;
+        NSString * text = name.text;
+        if([text isEqualToString:@""])
+        {
+            [alertController setMessage:@"名称不合法, 重新输入！"];
+            [self presentViewController:alertController animated:true completion:nil];
+        }else
+            [self.pathBL saveToFile:text];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+
+    [self presentViewController:alertController animated:true completion:nil];
+};
 
 - (IBAction)showPopover:(UIBarButtonItem *)sender {
     // grab the view controller we want to show
@@ -64,6 +85,7 @@
 
 }
 
+#pragma mark - popoverPresentationControllerDelegate
 - (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
     
     // called when a Popover is dismissed
@@ -82,6 +104,8 @@
     // called when the Popover changes positon
 }
 
+
+#pragma mark - drawingViewDataSource
 -(u_long) numberOfPath
 {
  
@@ -112,30 +136,34 @@
 
 -(void) addPath:(Path*)path
 {
-    self.pathsList = [self.pathbl createPath:path];
+    self.pathsList = [self.pathBL createPath:path];
 }
 
 -(void) removeLast
 {
-    self.pathsList = [self.pathbl remove];
+    self.pathsList = [self.pathBL remove];
 }
 
 -(void) addAbandonedPath
 {
     if(self.pathsList.count>0){
         Path *path = [self.pathsList lastObject];
-        self.pathsList = [self.pathbl remove];
+        self.pathsList = [self.pathBL remove];
         [self.abandonedPathList addObject:path];
     }
 }
-
 
 -(void) backAbandonedPath
 {
     if(self.abandonedPathList.count>0){
         Path *path = [self.abandonedPathList lastObject];
         [self.abandonedPathList removeLastObject];
-        self.pathsList = [self.pathbl createPath:path];
+        self.pathsList = [self.pathBL createPath:path];
     }
 }
+
+//-(void) reDraw:(DrawingView *)view
+//{
+//    [view setNeedsDisplay];
+//}
 @end

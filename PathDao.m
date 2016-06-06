@@ -47,4 +47,14 @@ static PathDao *sharedInstace;
 {
     return [self.delegate save:pathList];
 }
+
+-(BOOL) saveToFile:(NSString *)fileName
+{
+    return [self.delegate saveToFile:fileName];
+}
+
+-(NSMutableArray*) findByName:(NSString *)name
+{
+    return [self.delegate findByName:name];
+}
 @end

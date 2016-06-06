@@ -99,6 +99,23 @@ NSString * const PathPlistFileName = @"PathList.plist";
     return sucess;
 }
 
+-(BOOL) saveToFile:(NSString *)fileName
+{
+    NSString *dir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *dest = [dir stringByAppendingPathComponent:[fileName stringByAppendingPathExtension:@"plist" ]];
+
+    return [array writeToFile:dest atomically:YES];
+}
+
+-(NSMutableArray*) findByName:(NSString *)name
+{
+    NSString *dir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    filePath = [dir stringByAppendingPathComponent:[name stringByAppendingPathExtension:@"plist" ]];
+
+    array = [NSMutableArray arrayWithContentsOfFile:filePath];
+    return [self  findAll];
+}
+
 -(NSMutableArray *)ArrayWithString:(NSString *)str
 {
     NSMutableArray *arraytmp =[NSMutableArray array];
