@@ -10,9 +10,11 @@
 #import "PathDataDelegate.h"
 
 @interface PathPlistDataDelegate : NSObject<PathDataDelegate>
-{
-    NSString *filePath;
-    NSMutableArray *array;
-}
+
+@property (strong , nonatomic) NSString *filePath;
+@property (strong , nonatomic) NSMutableArray *pathFileArray;
+@property (strong , nonatomic) NSString *allPaths;
+@property (strong , nonatomic) NSMutableArray *array;
+
 
 @end

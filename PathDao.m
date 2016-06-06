@@ -57,4 +57,10 @@ static PathDao *sharedInstace;
 {
     return [self.delegate findByName:name];
 }
+
+-(NSMutableArray *) allPathFiles
+{
+    return [self.delegate allPathFiles];
+}
+
 @end

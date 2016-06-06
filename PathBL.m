@@ -47,4 +47,9 @@
 {
     return [self.pathDao findByName:name];
 }
+
+-(NSMutableArray *) allPathFiles
+{
+    return [self.pathDao allPathFiles];
+}
 @end

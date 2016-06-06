@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -79,49 +78,33 @@
             </objects>
             <point key="canvasLocation" x="181" y="286"/>
         </scene>
-        <!--Data Picker View Controller-->
-        <scene sceneID="NaH-fO-t2E">
+        <!--File Table View Controller-->
+        <scene sceneID="H6E-lr-T6H">
             <objects>
-                <viewController storyboardIdentifier="Date" id="sbo-Hh-nzi" customClass="DataPickerViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="7Nt-76-D9V"/>
-                        <viewControllerLayoutGuide type="bottom" id="ZqA-j7-set"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="JVD-Qt-it5">
+                <tableViewController storyboardIdentifier="FileTable" id="84t-Cy-sNb" customClass="FileTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="r8j-Ab-7bL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldB-3c-PT4">
-                                <rect key="frame" x="20" y="30" width="42" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="rWI-ia-jf5">
-                                <rect key="frame" x="20" y="58.5" width="560" height="541.5"/>
-                                <date key="date" timeIntervalSinceReferenceDate="486663670.86868399">
-                                    <!--2016-06-03 16:21:10 +0000-->
-                                </date>
-                            </datePicker>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="ldB-3c-PT4" firstAttribute="leading" secondItem="JVD-Qt-it5" secondAttribute="leadingMargin" id="9ZQ-SH-5iR"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="rWI-ia-jf5" secondAttribute="trailing" id="Bt2-4j-Nks"/>
-                            <constraint firstItem="ldB-3c-PT4" firstAttribute="top" secondItem="JVD-Qt-it5" secondAttribute="topMargin" constant="30" id="Nin-QT-pz5"/>
-                            <constraint firstItem="ZqA-j7-set" firstAttribute="top" secondItem="rWI-ia-jf5" secondAttribute="bottom" id="Yu5-Vj-Tpl"/>
-                            <constraint firstItem="rWI-ia-jf5" firstAttribute="top" secondItem="ldB-3c-PT4" secondAttribute="bottom" constant="8" id="Zxw-HC-quV"/>
-                            <constraint firstItem="rWI-ia-jf5" firstAttribute="leading" secondItem="JVD-Qt-it5" secondAttribute="leadingMargin" id="pAP-7j-XW9"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="datePicker" destination="rWI-ia-jf5" id="s2I-qn-FTl"/>
-                        <outlet property="label" destination="ldB-3c-PT4" id="aK3-5s-A8u"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Rnk-NO-YC6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FileCellIdentifier" id="e90-zn-eKd">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e90-zn-eKd" id="dno-GW-lB1">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="84t-Cy-sNb" id="hqV-EF-n02"/>
+                            <outlet property="delegate" destination="84t-Cy-sNb" id="xEQ-Rg-Onn"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yCs-q6-9pN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1091" y="382"/>
+            <point key="canvasLocation" x="819" y="132"/>
         </scene>
     </scenes>
     <resources>

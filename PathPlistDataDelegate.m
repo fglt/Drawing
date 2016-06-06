@@ -14,24 +14,32 @@ NSString * const PathColor = @"color";
 NSString * const PathWidth =@"width";
 NSString * const PathPoints = @"points";
 NSString * const PathPlistFileName = @"PathList.plist";
+NSString * const AllPathsFileName = @"paths.plist";
 @implementation PathPlistDataDelegate
+@synthesize array;
+@synthesize filePath;
+@synthesize allPaths;
+@synthesize pathFileArray;
 
 -(id)init{
     
     NSString *dir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     filePath = [dir stringByAppendingPathComponent:PathPlistFileName];
     NSFileManager *manager = [ NSFileManager defaultManager];
-    
+    allPaths = [dir stringByAppendingPathComponent:AllPathsFileName];
     BOOL  fileExits = [manager fileExistsAtPath:filePath];
-    if(!fileExits){
-        NSString *defaultPath = [ [ [ NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:PathPlistFileName];
-        NSError *err;
-        BOOL  sucess = [ manager copyItemAtPath:defaultPath toPath:filePath error:&err];
-        NSAssert(sucess, @"错误写入文件");
+    if(fileExits){
+        array = [NSMutableArray arrayWithContentsOfFile:filePath];
     }
+    if(array  == nil)
+        array = [NSMutableArray array];
     
-    array = [NSMutableArray arrayWithContentsOfFile:filePath];
-    
+    if([manager fileExistsAtPath:allPaths]){
+        pathFileArray = [NSMutableArray arrayWithContentsOfFile:allPaths];
+    }
+    if(pathFileArray == nil)
+        pathFileArray = [NSMutableArray array];
+
     return self;
 }
 
@@ -79,30 +87,47 @@ NSString * const PathPlistFileName = @"PathList.plist";
     return listData;
 }
 
--(BOOL) save:(NSMutableArray *)pathList
-{
-    
-    NSMutableArray *tmpArray = [NSMutableArray array];
-    
-    for(int i=0; i<pathList.count; i++)
-        {
-            Path *path = pathList[i];
-            UIColor *color = path.color;
-            CGFloat r,g,b,a;
-            [color getRed:&r green:&g blue:&b alpha:&a];
-            NSArray *colorArray = @[[NSNumber numberWithFloat:r],[NSNumber numberWithFloat:g],[NSNumber numberWithFloat:b],[NSNumber numberWithFloat:a]];
-            NSDictionary *dict = [NSDictionary dictionaryWithObjects:@[ colorArray, path.width, path.points] forKeys:@[ PathColor,  PathWidth, PathPoints] ];
-            [tmpArray addObject:dict];
-            NSLog(@"color: %@",color.description);
-        }
-    BOOL sucess = [tmpArray writeToFile:filePath atomically:true];
-    return sucess;
-}
+//-(BOOL) save:(NSMutableArray *)pathList
+//{
+//    
+//    NSMutableArray *tmpArray = [NSMutableArray array];
+//    
+//    for(int i=0; i<pathList.count; i++)
+//        {
+//            Path *path = pathList[i];
+//            UIColor *color = path.color;
+//            CGFloat r,g,b,a;
+//            [color getRed:&r green:&g blue:&b alpha:&a];
+//            NSArray *colorArray = @[[NSNumber numberWithFloat:r],[NSNumber numberWithFloat:g],[NSNumber numberWithFloat:b],[NSNumber numberWithFloat:a]];
+//            NSDictionary *dict = [NSDictionary dictionaryWithObjects:@[ colorArray, path.width, path.points] forKeys:@[ PathColor,  PathWidth, PathPoints] ];
+//            [tmpArray addObject:dict];
+//
+//        }
+//    BOOL sucess = [tmpArray writeToFile:filePath atomically:true];
+//    return sucess;
+//}
 
 -(BOOL) saveToFile:(NSString *)fileName
 {
     NSString *dir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *dest = [dir stringByAppendingPathComponent:[fileName stringByAppendingPathExtension:@"plist" ]];
+
+    
+    BOOL exist = false ;
+    for(int i=0; i< pathFileArray.count; i++)
+    {
+        if([pathFileArray[i] isEqualToString:fileName])
+        {
+            exist = YES;
+            break;
+        }
+    }
+    
+    if(!exist)
+    {
+        [pathFileArray addObject:fileName];
+        [pathFileArray writeToFile:allPaths atomically:true];
+    }
 
     return [array writeToFile:dest atomically:YES];
 }
@@ -110,10 +135,16 @@ NSString * const PathPlistFileName = @"PathList.plist";
 -(NSMutableArray*) findByName:(NSString *)name
 {
     NSString *dir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    filePath = [dir stringByAppendingPathComponent:[name stringByAppendingPathExtension:@"plist" ]];
+    
+    NSString *destpath = [dir stringByAppendingPathComponent:[name stringByAppendingPathExtension:@"plist" ]];
 
-    array = [NSMutableArray arrayWithContentsOfFile:filePath];
+    array = [NSMutableArray arrayWithContentsOfFile:destpath];
     return [self  findAll];
+}
+
+-(NSMutableArray *) allPathFiles
+{
+    return pathFileArray;
 }
 
 -(NSMutableArray *)ArrayWithString:(NSString *)str

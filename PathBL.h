@@ -23,5 +23,6 @@
 -(BOOL) saveToFile:(NSString *)fileName;
 
 -(NSMutableArray*) findByName:(NSString *)name;
+-(NSMutableArray *) allPathFiles;
 
 @end

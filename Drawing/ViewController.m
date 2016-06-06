@@ -26,6 +26,10 @@
     self.pathsList = [self.pathBL findAll];
     self.abandonedPathList = [NSMutableArray array];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadView:)
+                                                 name:@"drawingViewNotification"
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,9 +42,9 @@
 }
 
 - (IBAction)getARGB:(UIBarButtonItem *)sender {
-//    self.pathsList = [self.pathBL findByName:@"001"];
-//    self.abandonedPathList  = [NSMutableArray array];
-//    [self  reDraw:self.drawing];
+    self.pathsList = [self.pathBL findByName:@"001"];
+    self.abandonedPathList  = [NSMutableArray array];
+    [self  reDraw:self.drawing];
 }
 
 - (IBAction)onClickSave:(UIBarButtonItem *)sender {
@@ -69,7 +73,7 @@
 - (IBAction)showPopover:(UIBarButtonItem *)sender {
     // grab the view controller we want to show
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"Date"];
+    UIViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"FileTable"];
     
     // present the controller
     // on iPad, this will be a Popover
@@ -162,8 +166,16 @@
     }
 }
 
-//-(void) reDraw:(DrawingView *)view
-//{
-//    [view setNeedsDisplay];
-//}
+-(void) reDraw:(DrawingView *)view
+{
+    [view setNeedsDisplay];
+}
+
+-(void) reloadView:(NSNotification*)notification
+{
+    NSString *name = [notification object];
+    self.pathsList = [self.pathBL findByName:name];
+    self.abandonedPathList  = [NSMutableArray array];
+    [self  reDraw:self.drawing];
+}
 @end

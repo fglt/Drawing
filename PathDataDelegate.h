@@ -16,7 +16,8 @@
 -(BOOL) remove;
 -(BOOL) modify:(Path *)path;
 -(NSMutableArray *)findAll;
--(BOOL) save:(NSMutableArray *)pathList;
+//-(BOOL) save:(NSMutableArray *)pathList;
 -(BOOL) saveToFile:(NSString *)fileName;
 -(NSMutableArray*) findByName:(NSString *)name;
+-(NSMutableArray *) allPathFiles;
 @end

@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "DrawingView.h"
+#import "DrawingView.h"
 
-//@class DrawingView;
+@class DrawingView;
 @protocol DrawingViewDelegate <NSObject>
 
 //-(void) addPath:(Path*)path;
@@ -17,5 +17,5 @@
 //-(void) addAbandonedPath;
 //-(void) backAbandonedPath;
 
-//-(void) reDraw:(DrawingView *)drawView;
+-(void) reDraw:(DrawingView *)drawView;
 @end
