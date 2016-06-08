@@ -8,17 +8,13 @@
 
 #import "PathPlistDataDelegate.h"
 #import "Path.h"
-#include <UIKit/UIKit.h>
+#import <UIKit/UIKit.h>
+#import "constants.h"
 
-NSString * const PathColor = @"color";
-NSString * const PathWidth =@"width";
-NSString * const PathPoints = @"points";
-NSString * const PathPlistFileName = @"PathList.plist";
-NSString * const AllPathsFileName = @"paths.plist";
 @implementation PathPlistDataDelegate
-@synthesize array;
+@synthesize pathArray;
 @synthesize filePath;
-@synthesize allPaths;
+@synthesize pathsFileName;
 @synthesize pathFileArray;
 
 -(id)init{
@@ -26,21 +22,29 @@ NSString * const AllPathsFileName = @"paths.plist";
     NSString *dir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     filePath = [dir stringByAppendingPathComponent:PathPlistFileName];
     NSFileManager *manager = [ NSFileManager defaultManager];
-    allPaths = [dir stringByAppendingPathComponent:AllPathsFileName];
+    pathsFileName = [dir stringByAppendingPathComponent:AllPathsFileName];
     BOOL  fileExits = [manager fileExistsAtPath:filePath];
     if(fileExits){
-        array = [NSMutableArray arrayWithContentsOfFile:filePath];
+        pathArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     }
-    if(array  == nil)
-        array = [NSMutableArray array];
     
-    if([manager fileExistsAtPath:allPaths]){
-        pathFileArray = [NSMutableArray arrayWithContentsOfFile:allPaths];
+    if(pathArray  == nil)
+        pathArray = [NSMutableArray array];
+    
+    if([manager fileExistsAtPath:pathsFileName]){
+        pathFileArray = [NSMutableArray arrayWithContentsOfFile:pathsFileName];
     }
     if(pathFileArray == nil)
         pathFileArray = [NSMutableArray array];
 
     return self;
+}
+
+-(BOOL) newDrawing
+{
+    pathArray = [NSMutableArray array];
+    NSFileManager *manager = [ NSFileManager defaultManager];
+    return [manager removeItemAtPath:filePath error:nil];
 }
 
 -(BOOL) create:(Path *)path{
@@ -50,15 +54,15 @@ NSString * const AllPathsFileName = @"paths.plist";
     NSArray *colorArray = @[[NSNumber numberWithFloat:r],[NSNumber numberWithFloat:g],[NSNumber numberWithFloat:b],[NSNumber numberWithFloat:a]];
     NSDictionary *dict = [NSDictionary dictionaryWithObjects:@[ colorArray, path.width, path.points] forKeys:@[ PathColor,  PathWidth, PathPoints] ];
 
-    [array addObject:dict];
-    return [array writeToFile:filePath atomically:YES];
+    [pathArray addObject:dict];
+    return [pathArray writeToFile:filePath atomically:YES];
 
 }
 
 -(BOOL) remove{
-    [array removeLastObject];
+    [pathArray removeLastObject];
 
-    return [array writeToFile:filePath atomically:true];
+    return [pathArray writeToFile:filePath atomically:true];
 }
 
 -(BOOL) modify:(Path *)path{
@@ -74,7 +78,7 @@ NSString * const AllPathsFileName = @"paths.plist";
     
     NSMutableArray *listData = [ [ NSMutableArray alloc] init];
 
-    for (NSDictionary *dict in array) {
+    for (NSDictionary *dict in pathArray) {
         Path *path = [[Path alloc] init];
         NSArray *colorArray = [dict objectForKey:PathColor];
         path.color = [UIColor colorWithRed:[colorArray[0] floatValue] green:[colorArray[1] floatValue] blue:[colorArray[2] floatValue] alpha:[colorArray[3] floatValue]];
@@ -87,25 +91,19 @@ NSString * const AllPathsFileName = @"paths.plist";
     return listData;
 }
 
-//-(BOOL) save:(NSMutableArray *)pathList
-//{
-//    
-//    NSMutableArray *tmpArray = [NSMutableArray array];
-//    
-//    for(int i=0; i<pathList.count; i++)
-//        {
-//            Path *path = pathList[i];
-//            UIColor *color = path.color;
-//            CGFloat r,g,b,a;
-//            [color getRed:&r green:&g blue:&b alpha:&a];
-//            NSArray *colorArray = @[[NSNumber numberWithFloat:r],[NSNumber numberWithFloat:g],[NSNumber numberWithFloat:b],[NSNumber numberWithFloat:a]];
-//            NSDictionary *dict = [NSDictionary dictionaryWithObjects:@[ colorArray, path.width, path.points] forKeys:@[ PathColor,  PathWidth, PathPoints] ];
-//            [tmpArray addObject:dict];
-//
-//        }
-//    BOOL sucess = [tmpArray writeToFile:filePath atomically:true];
-//    return sucess;
-//}
+-(NSMutableArray *)  removeDrawing:(NSString *) drawingName
+{
+    for(int i=0; i< pathFileArray.count; i++)
+    {
+        if([pathFileArray[i] isEqualToString:drawingName])
+        {
+            [pathFileArray removeObjectAtIndex:i];
+            [pathFileArray writeToFile:pathsFileName atomically:true];
+            break;
+        }
+    }
+    return pathFileArray;
+}
 
 -(BOOL) saveToFile:(NSString *)fileName
 {
@@ -126,10 +124,10 @@ NSString * const AllPathsFileName = @"paths.plist";
     if(!exist)
     {
         [pathFileArray addObject:fileName];
-        [pathFileArray writeToFile:allPaths atomically:true];
+        [pathFileArray writeToFile:pathsFileName atomically:true];
     }
 
-    return [array writeToFile:dest atomically:YES];
+    return [pathArray writeToFile:dest atomically:YES];
 }
 
 -(NSMutableArray*) findByName:(NSString *)name
@@ -138,7 +136,7 @@ NSString * const AllPathsFileName = @"paths.plist";
     
     NSString *destpath = [dir stringByAppendingPathComponent:[name stringByAppendingPathExtension:@"plist" ]];
 
-    array = [NSMutableArray arrayWithContentsOfFile:destpath];
+    pathArray = [NSMutableArray arrayWithContentsOfFile:destpath];
     return [self  findAll];
 }
 

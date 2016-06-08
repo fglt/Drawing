@@ -19,6 +19,12 @@
     return self;
     
 }
+
+-(NSMutableArray *) newDrawing
+{
+    [self.pathDao newDrawing];
+    return [NSMutableArray array];
+}
 //插入Path方法
 -(NSMutableArray*) createPath:(Path*)path
 {
@@ -51,5 +57,10 @@
 -(NSMutableArray *) allPathFiles
 {
     return [self.pathDao allPathFiles];
+}
+
+-(NSMutableArray *)  removeDrawing:(NSString *) drawingName
+{
+    return [self.pathDao removeDrawing:drawingName ];
 }
 @end

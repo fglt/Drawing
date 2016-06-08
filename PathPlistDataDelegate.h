@@ -13,8 +13,8 @@
 
 @property (strong , nonatomic) NSString *filePath;
 @property (strong , nonatomic) NSMutableArray *pathFileArray;
-@property (strong , nonatomic) NSString *allPaths;
-@property (strong , nonatomic) NSMutableArray *array;
+@property (strong , nonatomic) NSString *pathsFileName;
+@property (strong , nonatomic) NSMutableArray *pathArray;
 
 
 @end

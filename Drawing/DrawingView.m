@@ -14,17 +14,15 @@ IB_DESIGNABLE
 @synthesize pathWidth;
 
 
-
-
 -(void) viewSet
 {
-    pathColor = [UIColor blueColor];
     pathWidth = 4;
 }
 
 -(id) initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
+    
     if(self !=nil){
         [self viewSet];
     }
@@ -63,6 +61,7 @@ IB_DESIGNABLE
             
     }
 }
+
 -(void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     NSMutableArray *pointsArray = [NSMutableArray array];
@@ -104,13 +103,13 @@ IB_DESIGNABLE
     
     if(touch.tapCount == 1)
     {
-         [self performSelector:@selector(tapOnce) withObject:nil afterDelay:timeInterval];
+         //[self performSelector:@selector(tapOnce) withObject:nil afterDelay:timeInterval];
     }
     
     NSLog(@"touchcount:%lu", (unsigned long)touch.tapCount);
     if(touch.tapCount == 2)
     {
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(tapOnce) object:nil];
+        //[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(tapOnce) object:nil];
         [self performSelector:@selector(tapTwice) withObject:nil afterDelay:timeInterval];
     }
 

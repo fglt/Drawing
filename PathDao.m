@@ -24,6 +24,11 @@ static PathDao *sharedInstace;
     return sharedInstace;
 }
 
+-(BOOL) newDrawing
+{
+    return [self.delegate newDrawing];
+}
+
 -(BOOL) create:(Path *) path
 {
    return [self.delegate create:path];
@@ -43,10 +48,10 @@ static PathDao *sharedInstace;
     return [self.delegate findAll];
 }
 
--(BOOL) save:(NSMutableArray *)pathList
-{
-    return [self.delegate save:pathList];
-}
+//-(BOOL) save:(NSMutableArray *)pathList
+//{
+//    return [self.delegate save:pathList];
+//}
 
 -(BOOL) saveToFile:(NSString *)fileName
 {
@@ -61,6 +66,12 @@ static PathDao *sharedInstace;
 -(NSMutableArray *) allPathFiles
 {
     return [self.delegate allPathFiles];
+}
+
+
+-(NSMutableArray *)  removeDrawing:(NSString *) drawingName
+{
+    return [self.delegate removeDrawing:drawingName];
 }
 
 @end

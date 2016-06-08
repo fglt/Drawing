@@ -12,6 +12,7 @@
 @protocol PathDataDelegate <NSObject>
 
 @required
+-(BOOL) newDrawing;
 -(BOOL) create:(Path *)path;
 -(BOOL) remove;
 -(BOOL) modify:(Path *)path;
@@ -20,4 +21,5 @@
 -(BOOL) saveToFile:(NSString *)fileName;
 -(NSMutableArray*) findByName:(NSString *)name;
 -(NSMutableArray *) allPathFiles;
+-(NSMutableArray *)  removeDrawing:(NSString *) drawingName;
 @end

@@ -14,12 +14,14 @@
 @property(strong, nonatomic) id<PathDataDelegate> delegate;
 +(PathDao *) sharedInstance;
 
+-(BOOL)newDrawing;
 -(BOOL) create:(Path *) path;
 -(BOOL) remove;
 -(BOOL) modify:(Path *) path;
--(BOOL) save:(NSMutableArray *)pathList;
+//-(BOOL) save:(NSMutableArray *)pathList;
 -(NSMutableArray *) findAll;
 -(BOOL) saveToFile:(NSString *)fileName;
 -(NSMutableArray*) findByName:(NSString *)name;
 -(NSMutableArray *) allPathFiles;
+-(NSMutableArray *)  removeDrawing:(NSString *) drawingName;
 @end

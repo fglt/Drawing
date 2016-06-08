@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Path.h"
 
 @protocol DrawingDataSource <NSObject>
 

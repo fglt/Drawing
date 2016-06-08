@@ -17,5 +17,5 @@
 //-(void) addAbandonedPath;
 //-(void) backAbandonedPath;
 
--(void) reDraw:(DrawingView *)drawView;
+-(void) reDraw;
 @end

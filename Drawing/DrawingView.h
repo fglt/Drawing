@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Path.h"
-#import "DrawingViewDelegate.h"
-#import "DrawingDataSource.h"
+
+
+@protocol DrawingViewDelegate;
+@protocol DrawingDataSource;
 
 @interface DrawingView : UIView
 //@property CGFloat radius;
@@ -20,4 +22,23 @@
 @property (weak, nonatomic) id<DrawingDataSource> dataSource;
 
 -(void) viewSet;
+@end
+
+@protocol DrawingDataSource <NSObject>
+
+@required
+-(u_long) numberOfPath;
+-(Path *) pathAtIndex:(u_long)index;
+-(Path *) pathAtLast;
+-(u_long) numberOfAbandonedPath;
+-(Path *) AbandonedPathAtLast;
+-(void) addPath:(Path*)path;
+-(void) removeLast;
+-(void) addAbandonedPath;
+-(void) backAbandonedPath;
+@end
+
+@protocol DrawingViewDelegate <NSObject>
+
+-(void) reDraw;
 @end

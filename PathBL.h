@@ -12,6 +12,9 @@
 @interface PathBL : NSObject
 @property PathDao *pathDao;
 
+
+-(NSMutableArray *) newDrawing;
+
 //插入Path方法
 -(NSMutableArray*) createPath:(Path*)path;
 
@@ -24,5 +27,5 @@
 
 -(NSMutableArray*) findByName:(NSString *)name;
 -(NSMutableArray *) allPathFiles;
-
+-(NSMutableArray *)  removeDrawing:(NSString *) drawingName;
 @end
