@@ -57,6 +57,7 @@ IB_DESIGNABLE
         }
         bpath.lineCapStyle = kCGLineCapRound ;
         bpath.lineJoinStyle = kCGLineJoinRound ;
+        
         [bpath stroke];
             
     }

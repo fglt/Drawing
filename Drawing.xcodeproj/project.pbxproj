@@ -15,6 +15,7 @@
 		1704547D1D072885006FF078 /* InfColorIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1704547C1D072885006FF078 /* InfColorIndicatorView.m */; };
 		170454801D07A74C006FF078 /* BarColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1704547F1D07A74C006FF078 /* BarColorPicker.m */; };
 		170454841D07C134006FF078 /* SquareColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 170454831D07C134006FF078 /* SquareColorPicker.m */; };
+		170454B01D087508006FF078 /* CircleColcorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 170454AF1D087508006FF078 /* CircleColcorPicker.m */; };
 		17135F721D011C830037625B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 17135F711D011C830037625B /* main.m */; };
 		17135F751D011C830037625B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17135F741D011C830037625B /* AppDelegate.m */; };
 		17135F781D011C830037625B /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17135F771D011C830037625B /* MainViewController.m */; };
@@ -47,6 +48,8 @@
 		1704547F1D07A74C006FF078 /* BarColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarColorPicker.m; sourceTree = "<group>"; };
 		170454821D07C134006FF078 /* SquareColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareColorPicker.h; sourceTree = "<group>"; };
 		170454831D07C134006FF078 /* SquareColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareColorPicker.m; sourceTree = "<group>"; };
+		170454AE1D087508006FF078 /* CircleColcorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleColcorPicker.h; sourceTree = "<group>"; };
+		170454AF1D087508006FF078 /* CircleColcorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleColcorPicker.m; sourceTree = "<group>"; };
 		17135F6D1D011C830037625B /* Drawing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drawing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17135F711D011C830037625B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		17135F731D011C830037625B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -127,6 +130,8 @@
 				1704547F1D07A74C006FF078 /* BarColorPicker.m */,
 				170454821D07C134006FF078 /* SquareColorPicker.h */,
 				170454831D07C134006FF078 /* SquareColorPicker.m */,
+				170454AE1D087508006FF078 /* CircleColcorPicker.h */,
+				170454AF1D087508006FF078 /* CircleColcorPicker.m */,
 			);
 			path = Drawing;
 			sourceTree = "<group>";
@@ -247,6 +252,7 @@
 				17135F781D011C830037625B /* MainViewController.m in Sources */,
 				170454771D06C822006FF078 /* InfHSBSupport.m in Sources */,
 				170454741D06B1C5006FF078 /* PaletteViewController.m in Sources */,
+				170454B01D087508006FF078 /* CircleColcorPicker.m in Sources */,
 				1704547D1D072885006FF078 /* InfColorIndicatorView.m in Sources */,
 				170454401D066983006FF078 /* constants.m in Sources */,
 				17135FCB1D02C6810037625B /* PathPlistDataDelegate.m in Sources */,

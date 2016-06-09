@@ -167,13 +167,23 @@
                                             <constraint firstItem="eGC-Oz-kGY" firstAttribute="width" secondItem="fhU-8N-xlh" secondAttribute="width" id="s3S-fl-dBZ"/>
                                         </constraints>
                                     </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6MN-fe-eXr" customClass="CircleColcorPicker">
+                                        <rect key="frame" x="200" y="200" width="200" height="200"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="AOJ-ks-LD2"/>
+                                            <constraint firstAttribute="height" constant="200" id="WXo-Ib-dKL"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="6MN-fe-eXr" firstAttribute="centerX" secondItem="DGo-qI-iFv" secondAttribute="centerX" id="1Ku-pO-2NB"/>
                                     <constraint firstAttribute="trailing" secondItem="vdS-QU-TRC" secondAttribute="trailing" id="5lI-Pg-Rjg"/>
                                     <constraint firstItem="dSq-Qa-zRk" firstAttribute="centerY" secondItem="DGo-qI-iFv" secondAttribute="centerY" id="Kdo-yT-pyt"/>
                                     <constraint firstAttribute="bottom" secondItem="vdS-QU-TRC" secondAttribute="bottom" id="a5E-Vu-EW1"/>
                                     <constraint firstItem="vdS-QU-TRC" firstAttribute="leading" secondItem="DGo-qI-iFv" secondAttribute="leading" id="dEC-K0-WWI"/>
                                     <constraint firstItem="dSq-Qa-zRk" firstAttribute="centerX" secondItem="DGo-qI-iFv" secondAttribute="centerX" id="hnK-J3-YcA"/>
+                                    <constraint firstItem="6MN-fe-eXr" firstAttribute="centerY" secondItem="DGo-qI-iFv" secondAttribute="centerY" id="uhB-ZQ-Hmq"/>
                                 </constraints>
                             </view>
                         </subviews>

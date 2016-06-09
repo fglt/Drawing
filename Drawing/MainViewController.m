@@ -38,6 +38,7 @@
     float h, s, v;
     
     HSVFromUIColor(color, &h, &s, &v);
+     NSLog(@"hsv: %f: %f: %f",h, s,v);
     
     self.barColorPicker.value = h;
     self.squareColorPicker.point = CGPointMake(s, v);
@@ -58,44 +59,8 @@
     }
     self.abandonedPathList  = [NSMutableArray array];
     [self  reDraw];
-}
 
-//
-//- (IBAction)slideR:(UISlider *)sender {
-//    
-//    float r = self.rSlider.value;
-//    float g = self.gSlider.value ;
-//    float b = self.bSlider.value ;
-//    float h, s,v;
-//    RGBToHSV(r, g, b, &h, &s, &v, YES);
-//    self.barColorPicker.value = h;
-//    self.squareColorPicker.hue = h;
-//    self.squareColorPicker.point = CGPointMake(s, v);
-//}
-//
-//- (IBAction)slideG:(UISlider *)sender {
-//    
-//    float r = self.rSlider.value;
-//    float g = self.gSlider.value ;
-//    float b = self.bSlider.value ;
-//    float h, s,v;
-//    RGBToHSV(r, g, b, &h, &s, &v, YES);
-//    self.barColorPicker.value = h;
-//    self.squareColorPicker.hue = h;
-//    self.squareColorPicker.point = CGPointMake(s, v);
-//}
-//
-//- (IBAction)slideB:(UISlider *)sender {
-//    
-//    float r = self.rSlider.value;
-//    float g = self.gSlider.value ;
-//    float b = self.bSlider.value ;
-//    float h, s,v;
-//    RGBToHSV(r, g, b, &h, &s, &v, YES);
-//    self.barColorPicker.value = h;
-//    self.squareColorPicker.hue = h;
-//    self.squareColorPicker.point = CGPointMake(s, v);
-//}
+}
 
 - (IBAction)slideRGB:(UISlider *)sender {
     
@@ -151,6 +116,8 @@
     float r, g,b;
     HSVtoRGB(sender.value*360, point.x, point.y, &r, &g, &b);
     [self doSetText:r :g :b];
+     NSLog(@"%f: %f: %f",sender.value, point.x,point.y);
+    
 }
 
 -(void)doSetText:(float)r :(float)g :(float)b
@@ -224,6 +191,6 @@ static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
     }
     
     RGBToHSV(r, g, b, h, s, v, YES);
-    NSLog(@"%f",h);
+    NSLog(@"%f: %f: %f",h, s,v);
 }
 @end

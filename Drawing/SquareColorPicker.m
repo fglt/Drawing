@@ -12,11 +12,7 @@
 #import "constants.h"
 
 
-//#define kContentInsetX 20
-//#define kContentInsetY 20
-//
-//#define kIndicatorSize 24
-
+IB_DESIGNABLE
 @implementation SquareColorPicker{
     InfColorIndicatorView* indicator;
     UIImageView *imgView;
