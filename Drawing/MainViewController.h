@@ -13,13 +13,17 @@
 #import "DrawingViewController.h"
 #import "BarColorPicker.h"
 #import "SquareColorPicker.h"
+#import "CircleColcorPicker.h"
 
-@interface MainViewController : DrawingViewController
+
+@interface MainViewController : DrawingViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet SquareColorPicker *squareColorPicker;
-@property (weak, nonatomic) IBOutlet UIStackView *palette;
 
-@property (weak, nonatomic) IBOutlet BarColorPicker *barColorPicker;
+@property (weak, nonatomic) IBOutlet UIView *paletteView;
+
+@property (weak, nonatomic) IBOutlet CircleColcorPicker *circleColorPicker;
+//@property (weak, nonatomic) IBOutlet BarColorPicker *barColorPicker;
 @property (weak, nonatomic) IBOutlet UISlider *rSlider;
 @property (weak, nonatomic) IBOutlet UISlider *gSlider;
 @property (weak, nonatomic) IBOutlet UISlider *bSlider;
@@ -29,6 +33,8 @@
 //- (IBAction)slideR:(UISlider *)sender;
 //- (IBAction)slideG:(UISlider *)sender;
 //- (IBAction)slideB:(UISlider *)sender;
+- (IBAction)onClickClear:(UIButton *)sender;
+- (IBAction)onClickImage:(UIBarButtonItem *)sender;
 
 - (IBAction)slideRGB:(UISlider *)sender;
 
@@ -36,8 +42,8 @@
 
 - (IBAction)getARGB:(UIBarButtonItem *)sender;
 - (IBAction)onClickSquareColorPicker:(SquareColorPicker *)sender;
+- (IBAction)onClickCircleColorPicker:(CircleColcorPicker *)sender;
 
-- (IBAction)onClickBarColorPicker:(BarColorPicker *)sender;
 
 @end
 

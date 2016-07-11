@@ -17,4 +17,6 @@
 @property (strong, nonatomic) NSMutableArray *pathsList;
 @property (strong, nonatomic) NSMutableArray *abandonedPathList;
 @property (strong, nonatomic) PathBL *pathBL;
+
+-(UIImage * )captureWithView;
 @end

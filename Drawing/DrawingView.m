@@ -38,6 +38,7 @@ IB_DESIGNABLE
     return self;
 }
 
+
 - (void)drawRect:(CGRect)rect {
     
     u_long count = [self.dataSource numberOfPath];
@@ -57,9 +58,9 @@ IB_DESIGNABLE
         }
         bpath.lineCapStyle = kCGLineCapRound ;
         bpath.lineJoinStyle = kCGLineJoinRound ;
-        
+        [bpath strokeWithBlendMode:kCGBlendModeClear alpha:1.0];
         [bpath stroke];
-            
+        
     }
 }
 

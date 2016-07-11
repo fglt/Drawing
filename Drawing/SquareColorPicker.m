@@ -32,7 +32,7 @@ IB_DESIGNABLE
 //    _point.y = 0.8;
 //    return self;
 //}
-- (void) setHue: (float) value
+- (void) setHue: (CGFloat) value
 {
     if (value != _hue || imgView.image == nil) {
         _hue = value;
@@ -86,7 +86,7 @@ IB_DESIGNABLE
         UIImage *img = [UIImage imageWithCGImage: imageRef];
         imgView.image = img;
         CGImageRelease(imageRef);
-
+        
         [self addSubview: imgView];
 
     }
@@ -95,6 +95,9 @@ IB_DESIGNABLE
         CGRect indicatorRect = { CGPointZero, { kIndicatorSize, kIndicatorSize } };
         indicator = [[InfColorIndicatorView alloc] initWithFrame: indicatorRect];
         [self addSubview: indicator];
+        
+        CGAffineTransform transform = CGAffineTransformMakeRotation(_roatation);
+        [self setTransform:transform];
     }
     
     [self setIndicatorColor];

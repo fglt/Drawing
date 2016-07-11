@@ -11,6 +11,7 @@
 
 @interface SquareColorPicker : UIControl
 
-@property (nonatomic) float hue;
+@property (nonatomic) CGFloat hue;
 @property (nonatomic) CGPoint point;
+@property (nonatomic ) CGFloat roatation;
 @end

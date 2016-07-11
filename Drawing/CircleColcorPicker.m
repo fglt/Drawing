@@ -35,7 +35,7 @@ IB_DESIGNABLE
         [self addSubview: indicator];
     }
     
-    indicator.color = [UIColor colorWithHue: 0.5
+    indicator.color = [UIColor colorWithHue: _hue
                                  saturation: 1.0f
                                  brightness: 1.0f
                                       alpha: 1.0f];

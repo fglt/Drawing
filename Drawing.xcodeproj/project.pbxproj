@@ -109,29 +109,29 @@
 		17135F6F1D011C830037625B /* Drawing */ = {
 			isa = PBXGroup;
 			children = (
-				17135F871D011D2D0037625B /* DrawingView.h */,
-				17135F881D011D2D0037625B /* DrawingView.m */,
-				17135F791D011C830037625B /* Main.storyboard */,
-				17135FAD1D01D5BB0037625B /* TranslucentToolbar.h */,
-				17135FAE1D01D5BB0037625B /* TranslucentToolbar.m */,
-				17135F761D011C830037625B /* MainViewController.h */,
-				17135F771D011C830037625B /* MainViewController.m */,
-				170454301D052EC4006FF078 /* FileTableViewController.h */,
-				170454311D052EC4006FF078 /* FileTableViewController.m */,
-				170454391D066199006FF078 /* DrawingViewController.h */,
-				1704543A1D066199006FF078 /* DrawingViewController.m */,
-				170454721D06B1C5006FF078 /* PaletteViewController.h */,
-				170454731D06B1C5006FF078 /* PaletteViewController.m */,
-				170454751D06C822006FF078 /* InfHSBSupport.h */,
-				170454761D06C822006FF078 /* InfHSBSupport.m */,
-				1704547B1D072885006FF078 /* InfColorIndicatorView.h */,
-				1704547C1D072885006FF078 /* InfColorIndicatorView.m */,
 				1704547E1D07A74C006FF078 /* BarColorPicker.h */,
 				1704547F1D07A74C006FF078 /* BarColorPicker.m */,
-				170454821D07C134006FF078 /* SquareColorPicker.h */,
-				170454831D07C134006FF078 /* SquareColorPicker.m */,
 				170454AE1D087508006FF078 /* CircleColcorPicker.h */,
 				170454AF1D087508006FF078 /* CircleColcorPicker.m */,
+				17135F871D011D2D0037625B /* DrawingView.h */,
+				17135F881D011D2D0037625B /* DrawingView.m */,
+				170454391D066199006FF078 /* DrawingViewController.h */,
+				1704543A1D066199006FF078 /* DrawingViewController.m */,
+				170454301D052EC4006FF078 /* FileTableViewController.h */,
+				170454311D052EC4006FF078 /* FileTableViewController.m */,
+				1704547B1D072885006FF078 /* InfColorIndicatorView.h */,
+				1704547C1D072885006FF078 /* InfColorIndicatorView.m */,
+				170454751D06C822006FF078 /* InfHSBSupport.h */,
+				170454761D06C822006FF078 /* InfHSBSupport.m */,
+				17135F791D011C830037625B /* Main.storyboard */,
+				17135F761D011C830037625B /* MainViewController.h */,
+				17135F771D011C830037625B /* MainViewController.m */,
+				170454721D06B1C5006FF078 /* PaletteViewController.h */,
+				170454731D06B1C5006FF078 /* PaletteViewController.m */,
+				170454821D07C134006FF078 /* SquareColorPicker.h */,
+				170454831D07C134006FF078 /* SquareColorPicker.m */,
+				17135FAD1D01D5BB0037625B /* TranslucentToolbar.h */,
+				17135FAE1D01D5BB0037625B /* TranslucentToolbar.m */,
 			);
 			path = Drawing;
 			sourceTree = "<group>";
@@ -207,6 +207,7 @@
 				TargetAttributes = {
 					17135F6C1D011C830037625B = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = TQWU9HD7N3;
 					};
 				};
 			};
@@ -378,10 +379,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Drawing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fglt.Drawing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -389,10 +393,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Drawing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fglt.Drawing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
