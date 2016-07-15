@@ -210,7 +210,7 @@
                                 <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="vdS-QU-TRC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7XA-nG-sAt"/>
                             <constraint firstItem="E8C-BU-oT8" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="CKb-X2-xsD"/>
@@ -234,6 +234,7 @@
                         <outlet property="rColor" destination="msj-xY-JVs" id="xsG-e4-1SB"/>
                         <outlet property="rSlider" destination="wRC-qh-8EW" id="bbb-6X-ECq"/>
                         <outlet property="squareColorPicker" destination="rxm-8M-Joe" id="Qxj-oC-Gdf"/>
+                        <outlet property="toolbarView" destination="vdS-QU-TRC" id="9RX-c2-Bbc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

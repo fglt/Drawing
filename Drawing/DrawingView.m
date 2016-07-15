@@ -17,6 +17,8 @@ IB_DESIGNABLE
 -(void) viewSet
 {
     pathWidth = 4;
+    //self.autoresizingMask = UIViewAutoresizingNone ;
+    //self.transform = CGAffineTransformMakeRotation(0);
 }
 
 -(id) initWithFrame:(CGRect)frame
@@ -35,12 +37,42 @@ IB_DESIGNABLE
     if(self !=nil){
         [self viewSet];
     }
+    
     return self;
 }
 
+-(void) roatation
+{
+    
+    UIDeviceOrientation or = [[UIDevice currentDevice] orientation];
+    CGAffineTransform at = CGAffineTransformMakeRotation(0);
+    switch (or) {
+        case UIDeviceOrientationPortrait:
+            at =  CGAffineTransformMakeRotation(M_PI * 0.5);
+            break;
+        case UIDeviceOrientationLandscapeLeft:
+            at =  CGAffineTransformMakeRotation(0);
+            break;
+            
+        case UIDeviceOrientationLandscapeRight:
+            at =  CGAffineTransformMakeRotation(M_PI );
+            break;
+            
+        case UIDeviceOrientationPortraitUpsideDown:
+            at =  CGAffineTransformMakeRotation(-M_PI *0.5 );
+            break;
+        default:
+            break;
+    }
+//    CGRect rf = self.frame ;
+//    CGRect rb = self.bounds;
+//    self.frame = CGRectMake(0, 0, 1024, 768);
+//    self.bounds = CGRectMake(0, 0, 1024, 768);
+    [self setTransform:at];
+}
 
 - (void)drawRect:(CGRect)rect {
-    
+
     u_long count = [self.dataSource numberOfPath];
     
     for(int i=0; i<count; i++){
@@ -129,6 +161,7 @@ IB_DESIGNABLE
     [self.dataSource addAbandonedPath];
     [self setNeedsDisplay];
 }
+
 -(void)tapOnce
 {
     UIView *view  = [self.subviews lastObject];
@@ -140,5 +173,6 @@ IB_DESIGNABLE
         }
     }
 }
+
 
 @end

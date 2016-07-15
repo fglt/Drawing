@@ -22,6 +22,8 @@
 @property (weak, nonatomic) id<DrawingDataSource> dataSource;
 
 -(void) viewSet;
+-(void) roatation;
+
 @end
 
 @protocol DrawingDataSource <NSObject>

@@ -14,9 +14,12 @@
 #import "BarColorPicker.h"
 #import "SquareColorPicker.h"
 #import "CircleColcorPicker.h"
+#import "TranslucentToolbar.h"
 
 
 @interface MainViewController : DrawingViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+@property (weak, nonatomic) IBOutlet TranslucentToolbar *toolbarView;
 
 @property (weak, nonatomic) IBOutlet SquareColorPicker *squareColorPicker;
 

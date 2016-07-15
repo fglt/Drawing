@@ -109,4 +109,16 @@
     
     return newImage;
 }
+
+
+
+//-(BOOL)shouldAutorotate{
+//    if([[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeLeft ||[[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeRight)
+//    {
+//        return NO;
+//    }
+//    else{
+//        return YES;
+//    }
+//}
 @end

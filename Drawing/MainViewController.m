@@ -9,7 +9,7 @@
 #import "MainViewController.h"
 #import "constants.h"
 #import "InfHSBSupport.h"
-
+#import "MainViewController+GestureHandler.h"
 
 @interface MainViewController () <UIPopoverPresentationControllerDelegate>
 
@@ -18,8 +18,11 @@
 @end
 
 @implementation MainViewController
-//@synthesize squareImageView;
-//@synthesize barImageView;
+
+-(BOOL) prefersStatusBarHidden
+{
+    return YES;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,8 +32,14 @@
                                              selector:@selector(reloadView:)
                                                  name:DrawingViewNotificationName
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange:)
+                                                 name:UIDeviceOrientationDidChangeNotification object:nil];
     [self start];
+    //[self addGesture];
+
 }
+
 
 -(void) start
 {
@@ -44,7 +53,6 @@
     self.circleColorPicker.hue = h;
     self.squareColorPicker.point = CGPointMake(s, v);
     self.squareColorPicker.roatation = M_PI/4;
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,6 +60,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - notification selector
 -(void) reloadView:(NSNotification*)notification
 {
     NSString *name = [notification object];
@@ -65,19 +74,35 @@
 
 }
 
-- (IBAction)onClickClear:(UIButton *)sender {
-    //UIColor *color = [UIColor clearColor];
-    UIColor *color = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.2];
-    self.drawing.pathColor =color;
-    float h, s, v;
-    
-    HSVFromUIColor(color, &h, &s, &v);
-    NSLog(@"hsv: %f: %f: %f",h, s,v);
-    
-    self.circleColorPicker.hue = h;
-    self.squareColorPicker.point = CGPointMake(s, v);
-    self.squareColorPicker.roatation = M_PI/4;
+- (void)deviceOrientationDidChange:(NSNotification *)notification {
+    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+    CGRect bounds = self.view.bounds, frame = self.toolbarView.frame;
+    CGFloat height = MIN(frame.size.width, frame.size.height);//旋转90或者-90度后，长宽发生对调，但是计算时只需要初始的高度即最小的边
+    if (orientation == UIDeviceOrientationPortrait) {//正常方向
+        [UIView animateWithDuration:0.3 animations:^{
+            self.toolbarView.transform = CGAffineTransformMakeRotation(0);
+            self.toolbarView.center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMaxY(bounds) - height / 2);
+        }];
+    } else if (orientation == UIDeviceOrientationPortraitUpsideDown) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.toolbarView.transform = CGAffineTransformMakeRotation(M_PI);
+            self.toolbarView.center = CGPointMake(CGRectGetMidX(bounds), height / 2);
+        }];
+    } else if (orientation == UIDeviceOrientationLandscapeLeft) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.toolbarView.center = CGPointMake(CGRectGetMinX(bounds) + height / 2, CGRectGetMidY(bounds));
+            self.toolbarView.transform = CGAffineTransformMakeRotation(M_PI_2);
+        }];
+    } else if (orientation == UIDeviceOrientationLandscapeRight) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.toolbarView.transform = CGAffineTransformMakeRotation(-M_PI_2);
+            self.toolbarView.center = CGPointMake(CGRectGetMaxX(bounds) - height / 2, CGRectGetMidY(bounds));
+        }];
+    }
 }
+
+#pragma mark - action of event
+
 
 - (IBAction)onClickImage:(UIBarButtonItem *)sender {
     UIImagePickerController *controller = [[UIImagePickerController alloc] init];
@@ -86,7 +111,7 @@
         controller.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
         controller.mediaTypes =[UIImagePickerController availableMediaTypesForSourceType:controller.sourceType];
     }
-    controller.modalPresentationStyle = UIModalPresentationPopover;
+    //controller.modalPresentationStyle = UIModalPresentationPopover;
 
     // present the controller
     // on iPad, this will be a Popover
@@ -100,19 +125,6 @@
     popController.barButtonItem = sender;
     popController.delegate = self;
 
-}
-
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
-{
-    UIImage *image = info[UIImagePickerControllerOriginalImage];
-    UIColor *bgColor = [UIColor colorWithPatternImage: image];
-    [self.drawing setBackgroundColor:bgColor];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
-{
-    NSLog(@"sucess");
 }
 
 - (IBAction)slideRGB:(UISlider *)sender {
@@ -153,6 +165,21 @@
 
 }
 
+
+- (IBAction)onClickClear:(UIButton *)sender {
+    //UIColor *color = [UIColor clearColor];
+    UIColor *color = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.2];
+    self.drawing.pathColor =color;
+    float h, s, v;
+    
+    HSVFromUIColor(color, &h, &s, &v);
+    NSLog(@"hsv: %f: %f: %f",h, s,v);
+    
+    self.circleColorPicker.hue = h;
+    self.squareColorPicker.point = CGPointMake(s, v);
+    self.squareColorPicker.roatation = M_PI/4;
+}
+
 - (IBAction)onClickSquareColorPicker:(SquareColorPicker *)sender {
     CGPoint point = sender.point;
     UIColor *color = [UIColor colorWithHue:sender.hue saturation:point.x brightness:point.y alpha:1];
@@ -187,17 +214,17 @@
     self.gColor.text = [[NSNumber numberWithInt:g] stringValue];
     self.bColor.text = [[NSNumber numberWithInt:b] stringValue];
     
-    [self sliderBGset:r :g :b :r :6 :self.rSlider :0];
-    [self sliderBGset:r :g :b :g :6 :self.gSlider :1];
-    [self sliderBGset:r :g :b :b :6 :self.bSlider :2];
+    [self sliderBGset:r :g :b :r :self.rSlider :0];
+    [self sliderBGset:r :g :b :g :self.gSlider :1];
+    [self sliderBGset:r :g :b :b :self.bSlider :2];
     
 }
 
--(void) sliderBGset:(int)r :(int)g :(int)b : (int) w : (int) h :(UISlider *)slider :(int) index
+-(void) sliderBGset:(int)r :(int)g :(int)b : (int) w  :(UISlider *)slider :(int) index
 {
 
-    UIImage * lImg =  [UIImage imageWithCGImage:createSlideImage(r,g,b, index,true,w,h)];
-    UIImage * rImg =  [UIImage imageWithCGImage:createSlideImage(r,g,b, index,false,256-w,h)];
+    UIImage * lImg =  [UIImage imageWithCGImage:createSlideImage(r,g,b, index,true,w,6)];
+    UIImage * rImg =  [UIImage imageWithCGImage:createSlideImage(r,g,b, index,false,256-w,6)];
     
     [slider setMinimumTrackImage:lImg forState:UIControlStateNormal ];
     [slider setMaximumTrackImage:rImg forState:UIControlStateNormal ];
@@ -234,6 +261,8 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MainStoryBoardName bundle:nil];
     UIViewController *controller = [storyboard instantiateViewControllerWithIdentifier:FileTableNavigationID];
     
+    CGFloat maxH = MIN(480, ([self.pathBL allPathFiles].count + 1) * 50);
+    controller.preferredContentSize = CGSizeMake(200, maxH);
     // present the controller
     // on iPad, this will be a Popover
     // on iPhone, this will be an action sheet
@@ -244,28 +273,22 @@
     UIPopoverPresentationController *popController = [controller popoverPresentationController];
     popController.permittedArrowDirections = UIPopoverArrowDirectionAny;
     popController.barButtonItem = sender;
+    
     popController.delegate = self;
 }
 
-static void HSVFromUIColor(UIColor* color, float* h, float* s, float* v)
+#pragma mark - UIImagePickerControllerDelegate function
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
-    CGColorRef colorRef = [color CGColor];
-    
-    const CGFloat* components = CGColorGetComponents(colorRef);
-    size_t numComponents = CGColorGetNumberOfComponents(colorRef);
-    
-    CGFloat r, g, b;
-    
-    if (numComponents < 3) {
-        r = g = b = components[0];
-    }
-    else {
-        r = components[0];
-        g = components[1];
-        b = components[2];
-    }
-    
-    RGBToHSV(r, g, b, h, s, v, YES);
-    NSLog(@"%f: %f: %f",*h, *s,*v);
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    UIColor *bgColor = [UIColor colorWithPatternImage: image];
+    [self.drawing setBackgroundColor:bgColor];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    NSLog(@"sucess");
+}
+
 @end

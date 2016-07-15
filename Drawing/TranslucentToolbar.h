@@ -10,4 +10,5 @@
 
 @interface TranslucentToolbar : UIToolbar
 
+
 @end
