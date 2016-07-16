@@ -16,7 +16,6 @@
 		170454801D07A74C006FF078 /* BarColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1704547F1D07A74C006FF078 /* BarColorPicker.m */; };
 		170454841D07C134006FF078 /* SquareColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 170454831D07C134006FF078 /* SquareColorPicker.m */; };
 		170454B01D087508006FF078 /* CircleColcorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 170454AF1D087508006FF078 /* CircleColcorPicker.m */; };
-		1704551A1D390E2B006FF078 /* GestureHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 170455191D390E2B006FF078 /* GestureHandler.m */; };
 		1704551D1D391815006FF078 /* MainViewController+GestureHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1704551C1D391815006FF078 /* MainViewController+GestureHandler.m */; };
 		17135F721D011C830037625B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 17135F711D011C830037625B /* main.m */; };
 		17135F751D011C830037625B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17135F741D011C830037625B /* AppDelegate.m */; };
@@ -26,11 +25,11 @@
 		17135F891D011D2D0037625B /* DrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17135F881D011D2D0037625B /* DrawingView.m */; };
 		17135FAF1D01D5BB0037625B /* TranslucentToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 17135FAE1D01D5BB0037625B /* TranslucentToolbar.m */; };
 		17135FBB1D0252A90037625B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17135FBA1D0252A90037625B /* Assets.xcassets */; };
-		17135FC41D02C0FD0037625B /* Path.m in Sources */ = {isa = PBXBuildFile; fileRef = 17135FC31D02C0FD0037625B /* Path.m */; };
-		17135FC71D02C17C0037625B /* PathDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 17135FC61D02C17C0037625B /* PathDao.m */; };
-		17135FCB1D02C6810037625B /* PathPlistDataDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17135FCA1D02C6810037625B /* PathPlistDataDelegate.m */; };
-		17135FD21D02D5C40037625B /* PathBL.m in Sources */ = {isa = PBXBuildFile; fileRef = 17135FD11D02D5C40037625B /* PathBL.m */; };
 		17135FD91D03AB840037625B /* PathList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17135FD81D03AB840037625B /* PathList.plist */; };
+		174F323A1D3A04F8006FB4D5 /* Path.m in Sources */ = {isa = PBXBuildFile; fileRef = 174F32321D3A04F8006FB4D5 /* Path.m */; };
+		174F323B1D3A04F8006FB4D5 /* PathBL.m in Sources */ = {isa = PBXBuildFile; fileRef = 174F32341D3A04F8006FB4D5 /* PathBL.m */; };
+		174F323C1D3A04F8006FB4D5 /* PathDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 174F32361D3A04F8006FB4D5 /* PathDao.m */; };
+		174F323D1D3A04F8006FB4D5 /* PathPlistDataDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 174F32391D3A04F8006FB4D5 /* PathPlistDataDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,8 +51,6 @@
 		170454831D07C134006FF078 /* SquareColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareColorPicker.m; sourceTree = "<group>"; };
 		170454AE1D087508006FF078 /* CircleColcorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleColcorPicker.h; sourceTree = "<group>"; };
 		170454AF1D087508006FF078 /* CircleColcorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleColcorPicker.m; sourceTree = "<group>"; };
-		170455181D390E2B006FF078 /* GestureHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureHandler.h; sourceTree = "<group>"; };
-		170455191D390E2B006FF078 /* GestureHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureHandler.m; sourceTree = "<group>"; };
 		1704551B1D391815006FF078 /* MainViewController+GestureHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MainViewController+GestureHandler.h"; sourceTree = "<group>"; };
 		1704551C1D391815006FF078 /* MainViewController+GestureHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MainViewController+GestureHandler.m"; sourceTree = "<group>"; };
 		17135F6D1D011C830037625B /* Drawing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drawing.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,16 +67,17 @@
 		17135FAD1D01D5BB0037625B /* TranslucentToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslucentToolbar.h; sourceTree = "<group>"; };
 		17135FAE1D01D5BB0037625B /* TranslucentToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranslucentToolbar.m; sourceTree = "<group>"; };
 		17135FBA1D0252A90037625B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		17135FC21D02C0FD0037625B /* Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Path.h; sourceTree = "<group>"; };
-		17135FC31D02C0FD0037625B /* Path.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Path.m; sourceTree = "<group>"; };
-		17135FC51D02C17C0037625B /* PathDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathDao.h; sourceTree = "<group>"; };
-		17135FC61D02C17C0037625B /* PathDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathDao.m; sourceTree = "<group>"; };
-		17135FC81D02C2650037625B /* PathDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathDataDelegate.h; sourceTree = "<group>"; };
-		17135FC91D02C6810037625B /* PathPlistDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathPlistDataDelegate.h; sourceTree = "<group>"; };
-		17135FCA1D02C6810037625B /* PathPlistDataDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathPlistDataDelegate.m; sourceTree = "<group>"; };
-		17135FD01D02D5C40037625B /* PathBL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathBL.h; sourceTree = "<group>"; };
-		17135FD11D02D5C40037625B /* PathBL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathBL.m; sourceTree = "<group>"; };
 		17135FD81D03AB840037625B /* PathList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PathList.plist; sourceTree = "<group>"; };
+		174F32311D3A04F8006FB4D5 /* Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Path.h; path = Drawing/Path.h; sourceTree = "<group>"; };
+		174F32321D3A04F8006FB4D5 /* Path.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Path.m; path = Drawing/Path.m; sourceTree = "<group>"; };
+		174F32331D3A04F8006FB4D5 /* PathBL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PathBL.h; path = Drawing/PathBL.h; sourceTree = "<group>"; };
+		174F32341D3A04F8006FB4D5 /* PathBL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PathBL.m; path = Drawing/PathBL.m; sourceTree = "<group>"; };
+		174F32351D3A04F8006FB4D5 /* PathDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PathDao.h; path = Drawing/PathDao.h; sourceTree = "<group>"; };
+		174F32361D3A04F8006FB4D5 /* PathDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PathDao.m; path = Drawing/PathDao.m; sourceTree = "<group>"; };
+		174F32371D3A04F8006FB4D5 /* PathDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PathDataDelegate.h; path = Drawing/PathDataDelegate.h; sourceTree = "<group>"; };
+		174F32381D3A04F8006FB4D5 /* PathPlistDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PathPlistDataDelegate.h; path = Drawing/PathPlistDataDelegate.h; sourceTree = "<group>"; };
+		174F32391D3A04F8006FB4D5 /* PathPlistDataDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PathPlistDataDelegate.m; path = Drawing/PathPlistDataDelegate.m; sourceTree = "<group>"; };
+		174F323F1D3A0512006FB4D5 /* DrawingDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingDataSource.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +113,7 @@
 		17135F6F1D011C830037625B /* Drawing */ = {
 			isa = PBXGroup;
 			children = (
+				174F323F1D3A0512006FB4D5 /* DrawingDataSource.h */,
 				1704547E1D07A74C006FF078 /* BarColorPicker.h */,
 				1704547F1D07A74C006FF078 /* BarColorPicker.m */,
 				170454AE1D087508006FF078 /* CircleColcorPicker.h */,
@@ -134,8 +133,6 @@
 				17135F771D011C830037625B /* MainViewController.m */,
 				1704551B1D391815006FF078 /* MainViewController+GestureHandler.h */,
 				1704551C1D391815006FF078 /* MainViewController+GestureHandler.m */,
-				170455181D390E2B006FF078 /* GestureHandler.h */,
-				170455191D390E2B006FF078 /* GestureHandler.m */,
 				170454721D06B1C5006FF078 /* PaletteViewController.h */,
 				170454731D06B1C5006FF078 /* PaletteViewController.m */,
 				170454821D07C134006FF078 /* SquareColorPicker.h */,
@@ -166,13 +163,13 @@
 		17135FBC1D0262870037625B /* persistenceLayer */ = {
 			isa = PBXGroup;
 			children = (
-				17135FC21D02C0FD0037625B /* Path.h */,
-				17135FC31D02C0FD0037625B /* Path.m */,
-				17135FC51D02C17C0037625B /* PathDao.h */,
-				17135FC61D02C17C0037625B /* PathDao.m */,
-				17135FC81D02C2650037625B /* PathDataDelegate.h */,
-				17135FC91D02C6810037625B /* PathPlistDataDelegate.h */,
-				17135FCA1D02C6810037625B /* PathPlistDataDelegate.m */,
+				174F32311D3A04F8006FB4D5 /* Path.h */,
+				174F32321D3A04F8006FB4D5 /* Path.m */,
+				174F32351D3A04F8006FB4D5 /* PathDao.h */,
+				174F32361D3A04F8006FB4D5 /* PathDao.m */,
+				174F32371D3A04F8006FB4D5 /* PathDataDelegate.h */,
+				174F32381D3A04F8006FB4D5 /* PathPlistDataDelegate.h */,
+				174F32391D3A04F8006FB4D5 /* PathPlistDataDelegate.m */,
 			);
 			name = persistenceLayer;
 			sourceTree = "<group>";
@@ -180,8 +177,8 @@
 		17135FCF1D02D5A60037625B /* BusinessLayer */ = {
 			isa = PBXGroup;
 			children = (
-				17135FD01D02D5C40037625B /* PathBL.h */,
-				17135FD11D02D5C40037625B /* PathBL.m */,
+				174F32331D3A04F8006FB4D5 /* PathBL.h */,
+				174F32341D3A04F8006FB4D5 /* PathBL.m */,
 			);
 			name = BusinessLayer;
 			sourceTree = "<group>";
@@ -258,7 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17135FD21D02D5C40037625B /* PathBL.m in Sources */,
+				174F323D1D3A04F8006FB4D5 /* PathPlistDataDelegate.m in Sources */,
 				17135F891D011D2D0037625B /* DrawingView.m in Sources */,
 				17135F781D011C830037625B /* MainViewController.m in Sources */,
 				170454771D06C822006FF078 /* InfHSBSupport.m in Sources */,
@@ -266,18 +263,17 @@
 				170454B01D087508006FF078 /* CircleColcorPicker.m in Sources */,
 				1704547D1D072885006FF078 /* InfColorIndicatorView.m in Sources */,
 				170454401D066983006FF078 /* constants.m in Sources */,
-				17135FCB1D02C6810037625B /* PathPlistDataDelegate.m in Sources */,
+				174F323C1D3A04F8006FB4D5 /* PathDao.m in Sources */,
 				1704543B1D066199006FF078 /* DrawingViewController.m in Sources */,
 				1704551D1D391815006FF078 /* MainViewController+GestureHandler.m in Sources */,
 				17135F751D011C830037625B /* AppDelegate.m in Sources */,
-				1704551A1D390E2B006FF078 /* GestureHandler.m in Sources */,
+				174F323A1D3A04F8006FB4D5 /* Path.m in Sources */,
 				17135FAF1D01D5BB0037625B /* TranslucentToolbar.m in Sources */,
-				17135FC71D02C17C0037625B /* PathDao.m in Sources */,
+				174F323B1D3A04F8006FB4D5 /* PathBL.m in Sources */,
 				170454801D07A74C006FF078 /* BarColorPicker.m in Sources */,
 				170454321D052EC4006FF078 /* FileTableViewController.m in Sources */,
 				17135F721D011C830037625B /* main.m in Sources */,
 				170454841D07C134006FF078 /* SquareColorPicker.m in Sources */,
-				17135FC41D02C0FD0037625B /* Path.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
