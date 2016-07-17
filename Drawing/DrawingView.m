@@ -7,6 +7,7 @@
 //
 
 #import "DrawingView.h"
+#import "constants.h"
 
 IB_DESIGNABLE
 @implementation DrawingView
@@ -18,6 +19,7 @@ IB_DESIGNABLE
 -(void) viewSet
 {
     pathWidth = 4;
+    self.backgroundColor = [UIColor whiteColor];
 
 }
 
@@ -184,4 +186,15 @@ IB_DESIGNABLE
 }
 
 
+-(void) loadNewDrawing:(NSString*) drawingName
+{
+    self.curPath = nil;
+    [self.dataSource loadNewDrawing:drawingName];
+    [self setNeedsDisplay];
+}
+
+-(void) saveToFile:(NSString *)name
+{
+    [self.dataSource saveToFile:name];
+}
 @end

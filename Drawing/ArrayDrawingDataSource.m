@@ -6,29 +6,24 @@
 //  Copyright © 2016 Coding. All rights reserved.
 //
 
-#import "DrawingViewController.h"
+#import "ArrayDrawingDataSource.h"
+#import "constants.h"
 
-@interface DrawingViewController ()
+@interface ArrayDrawingDataSource ()
 
 @end
 
-@implementation DrawingViewController
+@implementation ArrayDrawingDataSource
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+- (id)init {
+    self = [super init];
+
     self.pathBL = [ [PathBL alloc] init];
-    self.drawing.delegate = self;
-    self.drawing.dataSource = self;
     self.pathsList = [self.pathBL findAll];
     self.abandonedPathList = [NSMutableArray array];
+    
+    return self;
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 #pragma mark - drawingViewDataSource
 -(u_long) numberOfPath
@@ -88,38 +83,18 @@
     }
 }
 
--(void) reDraw
+-(void) loadNewDrawing:(NSString*)drawingName
 {
-    [self.drawing setNeedsDisplay];
-    
+    if([drawingName isEqualToString:NewDrawingStr]){
+        self.pathsList = [self.pathBL newDrawing];
+    }else{
+        self.pathsList = [self.pathBL findByName:drawingName];
+    }
+    self.abandonedPathList  = [NSMutableArray array];
 }
 
-- (UIImage *)captureWithView
+-(void) saveToFile:(NSString*)name
 {
-    // 1.开启上下文，第二个参数是是否不透明（opaque）NO为透明，这样可以防止占据额外空间（例如圆形图会出现方框），第三个为伸缩比例，0.0为不伸缩。
-    UIGraphicsBeginImageContextWithOptions(self.drawing.frame.size, NO, 0.0);
-    
-    // 2.将控制器view的layer渲染到上下文
-    [self.drawing.layer renderInContext:UIGraphicsGetCurrentContext()];
-    
-    // 3.取出图片
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    
-    // 4.结束上下文
-    UIGraphicsEndImageContext();
-    
-    return newImage;
+    [self.pathBL saveToFile:name];
 }
-
-
-
-//-(BOOL)shouldAutorotate{
-//    if([[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeLeft ||[[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeRight)
-//    {
-//        return NO;
-//    }
-//    else{
-//        return YES;
-//    }
-//}
 @end

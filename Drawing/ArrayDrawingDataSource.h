@@ -12,11 +12,10 @@
 #import "PathBL.h"
 #import "Path.h"
 
-@interface DrawingViewController : UIViewController<DrawingViewDelegate,DrawingDataSource>
-@property (weak, nonatomic) IBOutlet DrawingView *drawing;
+@interface ArrayDrawingDataSource:NSObject<DrawingDataSource>
+
 @property (strong, nonatomic) NSMutableArray *pathsList;
 @property (strong, nonatomic) NSMutableArray *abandonedPathList;
 @property (strong, nonatomic) PathBL *pathBL;
 
--(UIImage * )captureWithView;
 @end

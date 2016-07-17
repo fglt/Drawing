@@ -10,7 +10,6 @@
 #import "Path.h"
 
 
-@protocol DrawingViewDelegate;
 @protocol DrawingDataSource;
 
 @interface DrawingView : UIView
@@ -18,13 +17,14 @@
 
 @property UIColor *pathColor;
 @property CGFloat pathWidth;
-@property (weak, nonatomic) id<DrawingViewDelegate> delegate;
+
 @property (weak, nonatomic) id<DrawingDataSource> dataSource;
 @property Path *curPath;
 
 -(void) viewSet;
 -(void) roatation;
-
+-(void) loadNewDrawing:(NSString*) drawingName;
+-(void) saveToFile:(NSString *)name;
 @end
 
 @protocol DrawingDataSource <NSObject>
@@ -40,9 +40,7 @@
 -(void) removeLast;
 -(void) addAbandonedPath;
 -(void) backAbandonedPath;
+-(void) loadNewDrawing:(NSString*)drawingName;
+-(void) saveToFile:(NSString*)name;
 @end
 
-@protocol DrawingViewDelegate <NSObject>
-
--(void) reDraw;
-@end

@@ -10,15 +10,18 @@
 #import "DrawingView.h"
 #import "PathBL.h"
 #import "Path.h"
-#import "DrawingViewController.h"
+#import "ArrayDrawingDataSource.h"
 #import "BarColorPicker.h"
 #import "SquareColorPicker.h"
 #import "CircleColcorPicker.h"
 #import "TranslucentToolbar.h"
 
 
-@interface MainViewController : DrawingViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface MainViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
+@property CGRect viewBounds;
+@property (strong, nonatomic) DrawingView *drawing;
+@property (strong, nonatomic) ArrayDrawingDataSource* drawingDataSource;
 @property (weak, nonatomic) IBOutlet TranslucentToolbar *toolbarView;
 
 @property (weak, nonatomic) IBOutlet SquareColorPicker *squareColorPicker;

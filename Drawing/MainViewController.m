@@ -14,7 +14,7 @@
 @interface MainViewController () <UIPopoverPresentationControllerDelegate>
 
 - (IBAction)showPopover:(UIBarButtonItem *)sender;
-@property BOOL isFirst;
+
 @end
 
 @implementation MainViewController
@@ -37,13 +37,16 @@
                                                  name:UIDeviceOrientationDidChangeNotification object:nil];
     [self start];
     //[self addGesture];
-    self.isFirst = TRUE;
-    
+
 }
 
 
 -(void) start
 {
+    self.viewBounds = self.view.bounds;
+    self.drawing = [[DrawingView alloc]initWithFrame:self.view.bounds];
+    [self.view insertSubview:self.drawing atIndex:0];
+
     UIColor *color = [UIColor colorWithWhite:0.5 alpha:0.2];
     self.drawing.pathColor =color;
     float h, s, v;
@@ -51,10 +54,14 @@
     HSVFromUIColor(color, &h, &s, &v);
      NSLog(@"hsv: %f: %f: %f",h, s,v);
     
+    self.drawingDataSource = [[ArrayDrawingDataSource alloc] init];
+    self.drawing.dataSource = self.drawingDataSource;
+    
     self.circleColorPicker.hue = h;
     self.squareColorPicker.point = CGPointMake(s, v);
     self.squareColorPicker.roatation = M_PI/4;
-    self.drawing.frame = self.view.bounds;
+ 
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,65 +73,37 @@
 -(void) reloadView:(NSNotification*)notification
 {
     NSString *name = [notification object];
-    if([name isEqualToString:NewDrawingStr]){
-        self.pathsList = [self.pathBL newDrawing];
-    }else{
-        self.pathsList = [self.pathBL findByName:name];
-    }
-    self.abandonedPathList  = [NSMutableArray array];
-    [self  reDraw];
-
+    [self.drawing loadNewDrawing:name];
 }
 
 - (void)deviceOrientationDidChange:(NSNotification *)notification {
     UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
-    CGRect bounds = self.view.bounds;
-    NSString *orientationStr = @"unknown";
     
-   NSLog(@"self bounds: %@", NSStringFromCGRect(self.view.frame));
+    NSLog(@"self bounds: %@", NSStringFromCGRect(self.view.frame));
     if (orientation == UIDeviceOrientationPortrait) {//正常方向
-     self.isFirst =false;
-            self.drawing.transform = CGAffineTransformIdentity;
-//            self.drawing.center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
-        self.drawing.bounds = bounds ;
-        orientationStr = @"Portrait";
+        self.drawing.transform = CGAffineTransformIdentity;
         
     } else if (orientation == UIDeviceOrientationPortraitUpsideDown) {
-         self.isFirst =false;
-            self.drawing.transform = CGAffineTransformMakeRotation(M_PI);
-//            self.drawing.center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
-         self.drawing.bounds = bounds ;
-        orientationStr = @"UpsideDown";
+        
+        self.drawing.transform = CGAffineTransformMakeRotation(M_PI);
         
     } else if (orientation == UIDeviceOrientationLandscapeLeft) {
         
-        if(self.isFirst){
-            self.isFirst =false;
-        }else{
-            self.drawing.transform = CGAffineTransformMakeRotation(-M_PI_2);
-           // self.drawing.center = CGPointMake(height / 2, CGRectGetMidY(bounds));
-            self.drawing.bounds = CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.height, bounds.size.width);
-        }
-        orientationStr = @"Left";
- 
+        self.drawing.transform = CGAffineTransformMakeRotation(-M_PI_2);
+        
     } else if (orientation == UIDeviceOrientationLandscapeRight) {
-        if(self.isFirst){
-            self.isFirst =false;
-        }else{
-            self.drawing.transform = CGAffineTransformMakeRotation(M_PI_2);
-            self.drawing.bounds = CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.height, bounds.size.width);
-        }
-        orientationStr = @"Right";
+        self.drawing.transform = CGAffineTransformMakeRotation(M_PI_2);
     }
-    else if(orientation == UIDeviceOrientationUnknown){
-        if (bounds.size.width >bounds.size.height)
-        {
-//            self.drawing.bounds = CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height);
-        }
-    }
-    NSLog(@"%@", orientationStr);
+    
+    //    self.drawing.bounds = CGRectMake(self.viewBounds.size.width/2, self.viewBounds.size.height/2, self.viewBounds.size.width/2, self.viewBounds.size.height/2);
+    //
+    self.drawing.bounds = self.viewBounds;
+    self.drawing.center = CGPointMake(CGRectGetMidX(self.view.frame), CGRectGetMidY(self.view.frame));
+    NSLog(@"%ld", orientation);
     NSLog(@"drawing bounds: %@", NSStringFromCGRect(self.drawing.bounds));
+    NSLog(@"drawing frame: %@", NSStringFromCGRect(self.drawing.frame));
 }
+
 
 #pragma mark - action of event
 
@@ -269,7 +248,7 @@
             [alertController setMessage:@"名称不合法, 重新输入！"];
             [self presentViewController:alertController animated:true completion:nil];
         }else{
-            [self.pathBL saveToFile:text];
+            [self.drawing saveToFile:text];
             UIImage * image = [self captureWithView];
             UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
         }
@@ -286,7 +265,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MainStoryBoardName bundle:nil];
     UIViewController *controller = [storyboard instantiateViewControllerWithIdentifier:FileTableNavigationID];
     
-    CGFloat maxH = MIN(480, ([self.pathBL allPathFiles].count + 1) * 50);
+    CGFloat maxH = MIN(480, ([self.drawingDataSource.pathBL allPathFiles].count + 1) * 50);
     controller.preferredContentSize = CGSizeMake(200, maxH);
     // present the controller
     // on iPad, this will be a Popover
@@ -314,6 +293,23 @@
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
 {
     NSLog(@"sucess");
+}
+
+- (UIImage *)captureWithView
+{
+    // 1.开启上下文，第二个参数是是否不透明（opaque）NO为透明，这样可以防止占据额外空间（例如圆形图会出现方框），第三个为伸缩比例，0.0为不伸缩。
+    UIGraphicsBeginImageContextWithOptions(self.drawing.frame.size, NO, 0.0);
+    
+    // 2.将控制器view的layer渲染到上下文
+    [self.drawing.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    // 3.取出图片
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // 4.结束上下文
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 @end

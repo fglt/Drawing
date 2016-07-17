@@ -17,10 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGo-qI-iFv" customClass="DrawingView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8C-BU-oT8">
                                 <rect key="frame" x="152" y="50" width="296" height="500"/>
                                 <subviews>
@@ -215,19 +211,14 @@
                             <constraint firstItem="vdS-QU-TRC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7XA-nG-sAt"/>
                             <constraint firstItem="E8C-BU-oT8" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="CKb-X2-xsD"/>
                             <constraint firstItem="E8C-BU-oT8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CUC-tA-RYr"/>
-                            <constraint firstAttribute="trailing" secondItem="DGo-qI-iFv" secondAttribute="trailing" id="DLg-4C-qoJ"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="DGo-qI-iFv" secondAttribute="bottom" id="Jd4-Q2-GOb"/>
-                            <constraint firstItem="DGo-qI-iFv" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="TZt-cH-8Y4"/>
                             <constraint firstAttribute="bottom" secondItem="vdS-QU-TRC" secondAttribute="bottom" id="iyf-Fd-GSG"/>
                             <constraint firstAttribute="trailing" secondItem="vdS-QU-TRC" secondAttribute="trailing" id="rV4-2W-xWG"/>
-                            <constraint firstItem="DGo-qI-iFv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="v5V-Th-mgV"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="bColor" destination="aoh-8I-SQi" id="dqI-GB-hHf"/>
                         <outlet property="bSlider" destination="wBg-ZK-eLY" id="hpP-dD-DUg"/>
                         <outlet property="circleColorPicker" destination="6MN-fe-eXr" id="ynv-we-R5W"/>
-                        <outlet property="drawing" destination="DGo-qI-iFv" id="ysm-sP-Zkl"/>
                         <outlet property="gColor" destination="cvX-zY-eW6" id="Vef-V2-rAc"/>
                         <outlet property="gSlider" destination="039-3F-NuA" id="uND-1J-MQc"/>
                         <outlet property="paletteView" destination="E8C-BU-oT8" id="xwM-ub-o7J"/>

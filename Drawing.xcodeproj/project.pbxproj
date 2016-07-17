@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		170454321D052EC4006FF078 /* FileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 170454311D052EC4006FF078 /* FileTableViewController.m */; };
-		1704543B1D066199006FF078 /* DrawingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1704543A1D066199006FF078 /* DrawingViewController.m */; };
+		1704543B1D066199006FF078 /* ArrayDrawingDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1704543A1D066199006FF078 /* ArrayDrawingDataSource.m */; };
 		170454401D066983006FF078 /* constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1704543F1D066983006FF078 /* constants.m */; };
 		170454741D06B1C5006FF078 /* PaletteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 170454731D06B1C5006FF078 /* PaletteViewController.m */; };
 		170454771D06C822006FF078 /* InfHSBSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 170454761D06C822006FF078 /* InfHSBSupport.m */; };
@@ -35,8 +35,8 @@
 /* Begin PBXFileReference section */
 		170454301D052EC4006FF078 /* FileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileTableViewController.h; sourceTree = "<group>"; };
 		170454311D052EC4006FF078 /* FileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileTableViewController.m; sourceTree = "<group>"; };
-		170454391D066199006FF078 /* DrawingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingViewController.h; sourceTree = "<group>"; };
-		1704543A1D066199006FF078 /* DrawingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingViewController.m; sourceTree = "<group>"; };
+		170454391D066199006FF078 /* ArrayDrawingDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayDrawingDataSource.h; sourceTree = "<group>"; };
+		1704543A1D066199006FF078 /* ArrayDrawingDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayDrawingDataSource.m; sourceTree = "<group>"; };
 		1704543C1D066910006FF078 /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		1704543F1D066983006FF078 /* constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = constants.m; sourceTree = "<group>"; };
 		170454721D06B1C5006FF078 /* PaletteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaletteViewController.h; sourceTree = "<group>"; };
@@ -77,7 +77,6 @@
 		174F32371D3A04F8006FB4D5 /* PathDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PathDataDelegate.h; path = Drawing/PathDataDelegate.h; sourceTree = "<group>"; };
 		174F32381D3A04F8006FB4D5 /* PathPlistDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PathPlistDataDelegate.h; path = Drawing/PathPlistDataDelegate.h; sourceTree = "<group>"; };
 		174F32391D3A04F8006FB4D5 /* PathPlistDataDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PathPlistDataDelegate.m; path = Drawing/PathPlistDataDelegate.m; sourceTree = "<group>"; };
-		174F323F1D3A0512006FB4D5 /* DrawingDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingDataSource.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,11 +116,10 @@
 				1704547F1D07A74C006FF078 /* BarColorPicker.m */,
 				170454AE1D087508006FF078 /* CircleColcorPicker.h */,
 				170454AF1D087508006FF078 /* CircleColcorPicker.m */,
-				174F323F1D3A0512006FB4D5 /* DrawingDataSource.h */,
 				17135F871D011D2D0037625B /* DrawingView.h */,
 				17135F881D011D2D0037625B /* DrawingView.m */,
-				170454391D066199006FF078 /* DrawingViewController.h */,
-				1704543A1D066199006FF078 /* DrawingViewController.m */,
+				170454391D066199006FF078 /* ArrayDrawingDataSource.h */,
+				1704543A1D066199006FF078 /* ArrayDrawingDataSource.m */,
 				170454301D052EC4006FF078 /* FileTableViewController.h */,
 				170454311D052EC4006FF078 /* FileTableViewController.m */,
 				1704547B1D072885006FF078 /* InfColorIndicatorView.h */,
@@ -264,7 +262,7 @@
 				1704547D1D072885006FF078 /* InfColorIndicatorView.m in Sources */,
 				170454401D066983006FF078 /* constants.m in Sources */,
 				174F323C1D3A04F8006FB4D5 /* PathDao.m in Sources */,
-				1704543B1D066199006FF078 /* DrawingViewController.m in Sources */,
+				1704543B1D066199006FF078 /* ArrayDrawingDataSource.m in Sources */,
 				1704551D1D391815006FF078 /* MainViewController+GestureHandler.m in Sources */,
 				17135F751D011C830037625B /* AppDelegate.m in Sources */,
 				174F323A1D3A04F8006FB4D5 /* Path.m in Sources */,
@@ -394,7 +392,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fglt.Drawing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -409,7 +407,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fglt.Drawing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
