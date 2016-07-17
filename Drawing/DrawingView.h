@@ -20,6 +20,7 @@
 @property CGFloat pathWidth;
 @property (weak, nonatomic) id<DrawingViewDelegate> delegate;
 @property (weak, nonatomic) id<DrawingDataSource> dataSource;
+@property Path *curPath;
 
 -(void) viewSet;
 -(void) roatation;

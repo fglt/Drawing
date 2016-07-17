@@ -14,7 +14,7 @@
 @interface MainViewController () <UIPopoverPresentationControllerDelegate>
 
 - (IBAction)showPopover:(UIBarButtonItem *)sender;
-
+@property BOOL isFirst;
 @end
 
 @implementation MainViewController
@@ -37,7 +37,8 @@
                                                  name:UIDeviceOrientationDidChangeNotification object:nil];
     [self start];
     //[self addGesture];
-
+    self.isFirst = TRUE;
+    
 }
 
 
@@ -78,31 +79,50 @@
 - (void)deviceOrientationDidChange:(NSNotification *)notification {
     UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
     CGRect bounds = self.view.bounds;
+    NSString *orientationStr = @"unknown";
+    
    NSLog(@"self bounds: %@", NSStringFromCGRect(self.view.frame));
     if (orientation == UIDeviceOrientationPortrait) {//正常方向
-    
+     self.isFirst =false;
             self.drawing.transform = CGAffineTransformIdentity;
 //            self.drawing.center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
         self.drawing.bounds = bounds ;
+        orientationStr = @"Portrait";
         
     } else if (orientation == UIDeviceOrientationPortraitUpsideDown) {
-        
+         self.isFirst =false;
             self.drawing.transform = CGAffineTransformMakeRotation(M_PI);
 //            self.drawing.center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
          self.drawing.bounds = bounds ;
+        orientationStr = @"UpsideDown";
         
     } else if (orientation == UIDeviceOrientationLandscapeLeft) {
         
-
+        if(self.isFirst){
+            self.isFirst =false;
+        }else{
             self.drawing.transform = CGAffineTransformMakeRotation(-M_PI_2);
            // self.drawing.center = CGPointMake(height / 2, CGRectGetMidY(bounds));
             self.drawing.bounds = CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.height, bounds.size.width);
+        }
+        orientationStr = @"Left";
  
     } else if (orientation == UIDeviceOrientationLandscapeRight) {
-      
+        if(self.isFirst){
+            self.isFirst =false;
+        }else{
             self.drawing.transform = CGAffineTransformMakeRotation(M_PI_2);
             self.drawing.bounds = CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.height, bounds.size.width);
+        }
+        orientationStr = @"Right";
     }
+    else if(orientation == UIDeviceOrientationUnknown){
+        if (bounds.size.width >bounds.size.height)
+        {
+//            self.drawing.bounds = CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height);
+        }
+    }
+    NSLog(@"%@", orientationStr);
     NSLog(@"drawing bounds: %@", NSStringFromCGRect(self.drawing.bounds));
 }
 

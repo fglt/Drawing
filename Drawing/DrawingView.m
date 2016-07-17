@@ -12,13 +12,13 @@ IB_DESIGNABLE
 @implementation DrawingView
 @synthesize pathColor;
 @synthesize pathWidth;
+@synthesize curPath;
 
 
 -(void) viewSet
 {
     pathWidth = 4;
-    //self.autoresizingMask = UIViewAutoresizingNone ;
-    //self.transform = CGAffineTransformMakeRotation(0);
+
 }
 
 -(id) initWithFrame:(CGRect)frame
@@ -77,39 +77,42 @@ IB_DESIGNABLE
     
     for(int i=0; i<count; i++){
         Path *path = [self.dataSource pathAtIndex:i];
-        NSMutableArray *pointsArray = path.points;
-        UIBezierPath *bpath = [UIBezierPath bezierPath];
-        [path.color set];
-        bpath.lineWidth = [path.width floatValue];;
-        
-        [bpath moveToPoint: CGPointFromString(pointsArray[0]) ];
-        
-        for (int i=1; i<pointsArray.count; i++)
-        {
-            [bpath addLineToPoint:CGPointFromString(pointsArray[i])];
-        }
-        bpath.lineCapStyle = kCGLineCapRound ;
-        bpath.lineJoinStyle = kCGLineJoinRound ;
-        [bpath strokeWithBlendMode:kCGBlendModeClear alpha:1.0];
-        [bpath stroke];
-        
+        [self drawPath:path];
     }
+    [self drawPath:curPath];
+}
+
+-(void)drawPath:(Path*)path
+{
+    NSMutableArray *pointsArray = path.points;
+    UIBezierPath *bpath = [UIBezierPath bezierPath];
+    [path.color set];
+    bpath.lineWidth = [path.width floatValue];;
+    
+    [bpath moveToPoint: CGPointFromString(pointsArray[0]) ];
+    
+    for (int j=0; j<pointsArray.count; j++)
+    {
+        [bpath addLineToPoint:CGPointFromString(pointsArray[j])];
+    }
+    bpath.lineCapStyle = kCGLineCapRound ;
+    bpath.lineJoinStyle = kCGLineJoinRound ;
+    [bpath strokeWithBlendMode:kCGBlendModeClear alpha:1.0];
+    [bpath stroke];
 }
 
 -(void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     NSMutableArray *pointsArray = [NSMutableArray array];
 
-    Path *path =  [[Path alloc] init];
+    curPath =  [[Path alloc] init];
     CGPoint point = [[touches anyObject] locationInView:self];
     
     [pointsArray addObject:NSStringFromCGPoint(point)];
 
-    path.color = pathColor ;
-    path.width = [NSNumber  numberWithFloat:pathWidth] ;
-    path.points = pointsArray;
-    
-    [self.dataSource addPath:path];
+    curPath.color = pathColor ;
+    curPath.width = [NSNumber  numberWithFloat:pathWidth] ;
+    curPath.points = pointsArray;
 
 }
 
@@ -118,8 +121,8 @@ IB_DESIGNABLE
     CGPoint point = [ [touches anyObject] locationInView:self];
     CGPoint prePoint = [[touches anyObject] previousLocationInView:self];
 
-    Path *path = [self.dataSource pathAtLast];
-    [path.points addObject:NSStringFromCGPoint(point)];
+    //Path *path = [self.dataSource pathAtLast];
+    [curPath.points addObject:NSStringFromCGPoint(point)];
     
     CGRect rect = CGRectMake( MIN(point.x, prePoint.x)-pathWidth, MIN(point.y, prePoint.y)-pathWidth , ABS(point.x - prePoint.x)+pathWidth*2, ABS(point.y - prePoint.y)+pathWidth*2);
     [self setNeedsDisplayInRect:rect];
@@ -131,6 +134,12 @@ IB_DESIGNABLE
     UITouch *touch = [touches anyObject];
     CGFloat timeInterval = 0.3;
     
+    
+    if(touch.tapCount == 0)
+    {
+         [self.dataSource addPath:curPath];
+    }
+    
     if(touch.tapCount>0){
         [self.dataSource removeLast];
     }
@@ -140,7 +149,7 @@ IB_DESIGNABLE
          //[self performSelector:@selector(tapOnce) withObject:nil afterDelay:timeInterval];
     }
     
-    NSLog(@"touchcount:%lu", (unsigned long)touch.tapCount);
+    //NSLog(@"touchcount:%lu", (unsigned long)touch.tapCount);
     if(touch.tapCount == 2)
     {
         //[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(tapOnce) object:nil];
