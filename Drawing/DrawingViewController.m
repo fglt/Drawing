@@ -33,7 +33,6 @@
 #pragma mark - drawingViewDataSource
 -(u_long) numberOfPath
 {
-    
     return self.pathsList.count;
 }
 

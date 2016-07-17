@@ -113,11 +113,11 @@
 		17135F6F1D011C830037625B /* Drawing */ = {
 			isa = PBXGroup;
 			children = (
-				174F323F1D3A0512006FB4D5 /* DrawingDataSource.h */,
 				1704547E1D07A74C006FF078 /* BarColorPicker.h */,
 				1704547F1D07A74C006FF078 /* BarColorPicker.m */,
 				170454AE1D087508006FF078 /* CircleColcorPicker.h */,
 				170454AF1D087508006FF078 /* CircleColcorPicker.m */,
+				174F323F1D3A0512006FB4D5 /* DrawingDataSource.h */,
 				17135F871D011D2D0037625B /* DrawingView.h */,
 				17135F881D011D2D0037625B /* DrawingView.m */,
 				170454391D066199006FF078 /* DrawingViewController.h */,
@@ -394,7 +394,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fglt.Drawing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -409,7 +409,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fglt.Drawing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

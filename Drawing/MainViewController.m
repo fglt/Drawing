@@ -37,7 +37,7 @@
                                                  name:UIDeviceOrientationDidChangeNotification object:nil];
     [self start];
     //[self addGesture];
-
+    
 }
 
 
@@ -53,6 +53,7 @@
     self.circleColorPicker.hue = h;
     self.squareColorPicker.point = CGPointMake(s, v);
     self.squareColorPicker.roatation = M_PI/4;
+    self.drawing.frame = self.view.bounds;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,29 +77,42 @@
 
 - (void)deviceOrientationDidChange:(NSNotification *)notification {
     UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
-    CGRect bounds = self.view.bounds, frame = self.toolbarView.frame;
-    CGFloat height = MIN(frame.size.width, frame.size.height);//旋转90或者-90度后，长宽发生对调，但是计算时只需要初始的高度即最小的边
+    CGRect bounds = self.view.bounds;
+    NSString *orientationStr = @"unknown";
+    
+   NSLog(@"self bounds: %@", NSStringFromCGRect(self.view.frame));
     if (orientation == UIDeviceOrientationPortrait) {//正常方向
-        [UIView animateWithDuration:0.3 animations:^{
-            self.toolbarView.transform = CGAffineTransformMakeRotation(0);
-            self.toolbarView.center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMaxY(bounds) - height / 2);
-        }];
+
+            self.drawing.transform = CGAffineTransformIdentity;
+//            self.drawing.center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+        self.drawing.bounds = bounds ;
+        orientationStr = @"Portrait";
+        
     } else if (orientation == UIDeviceOrientationPortraitUpsideDown) {
-        [UIView animateWithDuration:0.3 animations:^{
-            self.toolbarView.transform = CGAffineTransformMakeRotation(M_PI);
-            self.toolbarView.center = CGPointMake(CGRectGetMidX(bounds), height / 2);
-        }];
+
+            self.drawing.transform = CGAffineTransformMakeRotation(M_PI);
+//            self.drawing.center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+         self.drawing.bounds = bounds ;
+        orientationStr = @"UpsideDown";
+        
     } else if (orientation == UIDeviceOrientationLandscapeLeft) {
-        [UIView animateWithDuration:0.3 animations:^{
-            self.toolbarView.center = CGPointMake(CGRectGetMinX(bounds) + height / 2, CGRectGetMidY(bounds));
-            self.toolbarView.transform = CGAffineTransformMakeRotation(M_PI_2);
-        }];
+
+            self.drawing.transform = CGAffineTransformMakeRotation(-M_PI_2);
+           // self.drawing.center = CGPointMake(height / 2, CGRectGetMidY(bounds));
+            self.drawing.bounds = CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.height, bounds.size.width);
+
+        orientationStr = @"Left";
+ 
     } else if (orientation == UIDeviceOrientationLandscapeRight) {
-        [UIView animateWithDuration:0.3 animations:^{
-            self.toolbarView.transform = CGAffineTransformMakeRotation(-M_PI_2);
-            self.toolbarView.center = CGPointMake(CGRectGetMaxX(bounds) - height / 2, CGRectGetMidY(bounds));
-        }];
+      
+            self.drawing.transform = CGAffineTransformMakeRotation(M_PI_2);
+            self.drawing.bounds = CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.height, bounds.size.width);
+        
+        orientationStr = @"Right";
     }
+    
+    NSLog(@"%@", orientationStr);
+    NSLog(@"drawing bounds: %@", NSStringFromCGRect(self.drawing.bounds));
 }
 
 #pragma mark - action of event
