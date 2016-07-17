@@ -33,9 +33,7 @@
 #pragma mark - drawingViewDataSource
 -(u_long) numberOfPath
 {
-    //NSLog(@"path count: %ld",self.pathsList.count);
     return self.pathsList.count;
-    
 }
 
 -(Path *) pathAtIndex:(u_long)index
