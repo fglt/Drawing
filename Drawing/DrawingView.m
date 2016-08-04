@@ -140,11 +140,12 @@ IB_DESIGNABLE
     if(touch.tapCount == 0)
     {
          [self.dataSource addPath:curPath];
+        curPath = nil;
     }
     
-    if(touch.tapCount>0){
-        [self.dataSource removeLast];
-    }
+//    if(touch.tapCount>0){
+//        [self.dataSource removeLast];
+//    }
     
     if(touch.tapCount == 1)
     {
@@ -155,6 +156,7 @@ IB_DESIGNABLE
     if(touch.tapCount == 2)
     {
         //[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(tapOnce) object:nil];
+        self.curPath = nil;
         [self performSelector:@selector(tapTwice) withObject:nil afterDelay:timeInterval];
     }
 
